@@ -1,10 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Deliberate for v0: cap photos load straight from R2 public URLs whose
-  // custom domain isn't finalized yet. Flip to false + remotePatterns once
-  // img.ibnlarosh.com (or r2.dev) is locked in. Tracked in PHASE.md.
-  images: { unoptimized: true },
+  // Cap photos are served same-origin by /api/media/<key>, so Next can optimise
+  // and resize them (WebP/AVIF, per-breakpoint srcset) without a remote pattern.
+  images: {
+    formats: ["image/avif", "image/webp"],
+    minimumCacheTTL: 2592000,
+  },
 };
 
 export default nextConfig;

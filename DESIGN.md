@@ -23,7 +23,8 @@ woven patterns. Assets: `public/brand/logo.png` (header mark), `public/brand/emb
 | `--ink` | `#14231B` | Body text |
 | `--mut` | `#667066` | Muted text |
 | `--line` | `#E8DFC0` | Hairlines/borders |
-| `--wa` | `#25D366` | WhatsApp buttons ONLY |
+| `--wa` | `#25D366` | WhatsApp accent ONLY (glow, highlights) |
+| `--wa-solid` | `#07864A` | WhatsApp button/tab/FAB surface — white glyph needs 4.65:1 |
 
 Tailwind v4: define these in `@theme` inside `src/app/globals.css`
 (`--color-g9`, `--color-gold`, `--color-cream` … software decides names; tokens above are the values).

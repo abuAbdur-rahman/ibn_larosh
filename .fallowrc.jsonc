@@ -1,0 +1,14 @@
+{
+  // Fallow (codebase analyzer) configuration.
+  // https://fallow.tools/docs/configuration
+
+  // shadcn-generated primitives are a vendored component library, not our
+  // code. Treating them as roots keeps them (and the packages they import)
+  // out of dead-code findings until pages consume them in Phase 3.
+  "entry": ["src/components/ui/**/*.tsx"],
+
+  "health": {
+    // Vendored primitives are not ours to refactor.
+    "ignore": ["src/components/ui/**"]
+  }
+}

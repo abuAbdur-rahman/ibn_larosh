@@ -24,6 +24,9 @@
 .DS_Store
 *.pem
 
+# local QA artifacts
+/.openchamber/
+
 # debug
 npm-debug.log*
 yarn-debug.log*

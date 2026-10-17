@@ -1,22 +1,49 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import type { ReactNode } from "react";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Inter, Playfair_Display } from "next/font/google";
+import { SiteHeader } from "@/components/site-header";
+import { SiteFooter } from "@/components/site-footer";
+import { TabBar } from "@/components/tab-bar";
+import { WhatsAppFab } from "@/components/whatsapp-fab";
+import { getSiteUrl } from "@/lib/site-url";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const playfair = Playfair_Display({
+  variable: "--font-playfair",
   subsets: ["latin"],
+  weight: ["600", "700"],
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const inter = Inter({
+  variable: "--font-inter",
   subsets: ["latin"],
+  display: "swap",
 });
+
+const siteUrl = getSiteUrl();
+
+export const viewport: Viewport = {
+  themeColor: "#0A3B22",
+  viewportFit: "cover",
+};
 
 export const metadata: Metadata = {
-  title: "IBN Larosh Enterprises — Quality Hausa Caps",
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "IBN Larosh Enterprises — Quality Hausa Caps",
+    template: "%s · IBN Larosh Enterprises",
+  },
   description:
     "Quality and fancy Hausa caps in every size, colour and design. Tajia, kaftan caps, custom weaving. Order directly on WhatsApp. Ilorin, Kwara State.",
+  applicationName: "IBN Larosh Enterprises",
+  openGraph: {
+    siteName: "IBN Larosh Enterprises",
+    locale: "en_NG",
+    type: "website",
+    description:
+      "Quality and fancy Hausa caps in every size, colour and design. Order directly on WhatsApp. Ilorin, Kwara State.",
+  },
 };
 
 // Explicit props instead of the build-generated LayoutProps type, so
@@ -25,9 +52,16 @@ type RootLayoutProps = { children: ReactNode };
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased`}>
-        {children}
+    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+      <body className="font-sans antialiased">
+        <a className="skip-link" href="#main">
+          Skip to content
+        </a>
+        <SiteHeader />
+        <main id="main">{children}</main>
+        <SiteFooter />
+        <TabBar />
+        <WhatsAppFab />
       </body>
     </html>
   );

@@ -9,7 +9,7 @@ No cart, no payment: every **Order** button opens WhatsApp (`wa.me/2348109080076
 |---|---|
 | Stack | Next.js 16 (App Router) · React 19 · TypeScript strict · Tailwind v4 · pnpm |
 | Database | Neon Postgres + Drizzle ORM (`serverless HTTP driver`) |
-| Storage | Cloudflare R2 (S3-compatible), public-read bucket for cap photos |
+| Storage | Cloudflare R2 (S3-compatible), **private** bucket; photos streamed through `/api/media/<key>` |
 | Deploy | Vercel · repo `ibn_larosh` (GitHub, public) |
 | CI | GitHub Actions — ESLint + tsc + next build (push to `main` + all PRs) |
 
@@ -39,7 +39,7 @@ Scripts: `dev` · `build` · `start` · `lint` · `typecheck` · `db:generate` �
 | `/delivery` | Ilorin delivery + pickup info |
 | `/faq` | Accordion FAQ |
 | `/about` `· /contact` | Story + logo · WhatsApp/call/map |
-| `/admin` | Owner portal (single admin from `.env`) — login, upload, edit/hide/delete caps |
+| `/admin` | Owner portal (single admin from `.env`) — login, upload, edit/hide/delete caps (**Phase 3**) |
 
 ## Caching model
 
@@ -62,4 +62,5 @@ adds/edits/hides a cap, every public page freshens on the next request. Details:
 ## Env variables
 
 See [`.env.example`](.env.example) — admin creds, Neon `DATABASE_URL`, CF account/R2 keys,
-bucket name, public base URL. Secrets never leave git; `.env` is gitignored.
+bucket name, optional `NEXT_PUBLIC_SITE_URL`. Secrets never leave git; `.env` is gitignored.
+The R2 bucket stays private: photos are read server-side and served from `/api/media/<key>`.

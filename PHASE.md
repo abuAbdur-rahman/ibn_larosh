@@ -6,7 +6,7 @@ Commit format: `type(scope): short description`.
 | Phase | Title | Scope | Status |
 |---|---|---|---|
 | 0 | Scaffold & docs | Next.js installer, docs (`AGENTS`/`DESIGN`/`PHASE`/`README`), env, git+GH repo, CI | ✅ done (audit-fixed) |
-| 1 | Public site | Design system in code, all public routes, seed caps, WhatsApp ordering | ⬜ pending |
+| 1 | Public site | Design system in code, all public routes, seed caps, WhatsApp ordering | ✅ done (audit-fixed) |
 | 2 | Data layer | Drizzle/Neon schema, DB-backed catalog, R2 internals, ISR caching strategy | ⬜ pending |
 | 3 | Admin portal | Env-based login, session cookie, upload + cap CRUD, cache invalidation | ⬜ pending |
 | 4 | Polish & deploy | SEO/OG, favicon set, image optimization flip, Vercel deploy | ⬜ pending |
@@ -20,7 +20,10 @@ prototype `docs/reference/prototype.html` · visual spec `DESIGN.md`.
 2. WhatsApp/Call number: `08109080076` (→ `wa.me/2348109080076`) — assumed from flier. ⚠ confirm.
 3. Prices: hidden by default; cap cards show sizes, ordering says price on WhatsApp. ⚠ confirm (schema keeps optional `price`).
 4. Categories: Tajia · Kaftan caps · Fancy · Custom weave. ✅ per prototype.
-5. Custom domain: not yet. `R2_PUBLIC_BASE_URL` placeholder; Next `images.unoptimized=true` until image CDN host locked (see `next.config.ts`). ⚠ open.
+5. Images: **solved without public access.** Bucket `bn-laroosh` is private; photos are read
+   with the S3 SDK (`src/lib/r2.ts`) and served from `/api/media/<key>` with immutable cache
+   headers. `R2_PUBLIC_BASE_URL` is no longer needed. Next image optimisation is **on**
+   (same-origin URLs, AVIF/WebP, per-breakpoint srcset), so no public bucket is required. ✅
 6. Brand name is fixed ("Ibn Larosh"); no public meaning/wording needed beyond logo wordmark.
 
 ---
@@ -30,4 +33,5 @@ prototype `docs/reference/prototype.html` · visual spec `DESIGN.md`.
 | Date | Phase | Commit | Summary |
 |---|---|---|---|
 | 2026-10-17 | 0 | `dd63f47` | scaffold + docs + CI; DB probe `SELECT 99+1` OK against Neon |
-| 2026-10-17 | 0 (audit fixes) | (this commit) | OCR round-2 fixes: postcss Tailwind wiring, portable layout types, CI hardening, branded placeholder home, db:probe script, removed unused @tailwindcss/turbopack |
+| 2026-10-17 | 0 (audit fixes) | `35923c5` | OCR round-2 fixes: postcss Tailwind wiring, portable layout types, CI hardening, branded placeholder home, db:probe script, removed unused @tailwindcss/turbopack |
+| 2026-10-17 | 1 | (this commit) | public site: brand tokens + Playfair/Inter, shadcn primitives, header/tab bar/FAB, all public routes, real 10-cap catalog from R2 via private `/api/media` proxy, WhatsApp ordering; audit fixes (detail image stretch, logo distortion, heading weight, contrast, spacing, order-bar containing block); fallow clean |
