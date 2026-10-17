@@ -1,4 +1,9 @@
-import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
+import {
+  S3Client,
+  GetObjectCommand,
+  PutObjectCommand,
+  DeleteObjectCommand,
+} from "@aws-sdk/client-s3";
 import { r2Config } from "./env";
 
 /* Server-side R2 access (S3-compatible Cloudflare R2).
@@ -86,5 +91,39 @@ export async function getMediaObject(key: string): Promise<MediaObject | null> {
     // Log without leaking credentials/URLs to the client.
     console.error(`R2 media read failed for "${key}":`, error);
     throw error;
+  }
+}
+
+/** Upload (admin only). Keys are generated server-side and stay flat. */
+export async function putMediaObject(
+  key: string,
+  body: Uint8Array,
+  contentType: string
+): Promise<void> {
+  if (!isValidMediaKey(key)) {
+    throw new Error("Invalid media key");
+  }
+
+  await getR2Client().send(
+    new PutObjectCommand({
+      Bucket: r2Config().bucket,
+      Key: key,
+      Body: body,
+      ContentType: contentType,
+      CacheControl: "public, max-age=31536000, immutable",
+    })
+  );
+}
+
+/** Best-effort delete; a missing object is not an error. */
+export async function deleteMediaObject(key: string): Promise<void> {
+  if (!isValidMediaKey(key)) return;
+
+  try {
+    await getR2Client().send(
+      new DeleteObjectCommand({ Bucket: r2Config().bucket, Key: key })
+    );
+  } catch (error) {
+    console.error(`R2 delete failed for "${key}":`, error);
   }
 }
