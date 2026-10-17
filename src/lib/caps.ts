@@ -15,7 +15,7 @@ const mediaUrl = (key: string) => `/api/media/${key}`;
 
 type CapRow = typeof capsTable.$inferSelect;
 
-function toCap(row: CapRow): Cap {
+export function rowToCap(row: CapRow): Cap {
   return {
     id: row.id,
     name: row.name,
@@ -47,7 +47,7 @@ async function readCaps(): Promise<Cap[]> {
       .orderBy(desc(capsTable.createdAt));
 
     // An empty table (before the seed run) still renders a full catalog.
-    return rows.length > 0 ? rows.map(toCap) : getSeedCaps();
+    return rows.length > 0 ? rows.map(rowToCap) : getSeedCaps();
   } catch (error) {
     console.error("Catalog DB read failed; serving seed data.", error);
     return getSeedCaps();

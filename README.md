@@ -40,7 +40,7 @@ Scripts: `dev` · `build` · `start` · `lint` · `typecheck` · `db:push` · `d
 | `/delivery` | Ilorin delivery + pickup info |
 | `/faq` | Accordion FAQ |
 | `/about` `· /contact` | Story + logo · WhatsApp/call/map |
-| `/admin` | Owner portal (single admin from `.env`) — login, upload, edit/hide/delete caps (**Phase 3**) |
+| `/admin` | Owner portal (single admin from `.env`) — login, upload, edit/hide/delete caps |
 
 ## Caching model
 

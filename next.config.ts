@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 2592000,
   },
+  experimental: {
+    serverActions: {
+      // Admin uploads allow 5 MB photos; multipart framing adds ~20 KB.
+      bodySizeLimit: "6mb",
+    },
+  },
 };
 
 export default nextConfig;

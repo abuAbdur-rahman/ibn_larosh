@@ -9,6 +9,12 @@
 
   "health": {
     // Vendored primitives are not ours to refactor.
-    "ignore": ["src/components/ui/**"]
+    "ignore": ["src/components/ui/**"],
+
+    // CRAP = CC² × (1 − coverage)³ + CC. With no test harness yet, coverage is
+    // estimated at 0, so this is just CC² + CC. Keep the real complexity gates
+    // strict (cyclomatic 20, cognitive 15) and allow CC ≤ 7 here until tests +
+    // coverage reporting land in Phase 4.
+    "maxCrap": 60
   }
 }
