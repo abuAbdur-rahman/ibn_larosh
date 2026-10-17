@@ -204,11 +204,15 @@
     caret-color: var(--g9);
   }
 
-  /* Focus ring inherits the element's own text colour, so it stays legible on
-     cream, paper, gold and green surfaces alike. */
+  /* Dual ring: the outline follows the text colour (visible on dark green,
+     white and gold), while the cream halo guarantees contrast when the text
+     colour matches the page (e.g. white text on the WhatsApp button). */
   :where(a, button, input, select, textarea, summary, [tabindex]):focus-visible {
     outline: 2px solid currentColor;
-    outline-offset: 3px;
+    outline-offset: 2px;
+    box-shadow:
+      0 0 0 4px rgba(250, 244, 225, 0.95),
+      0 0 0 6px rgba(10, 59, 34, 0.55);
   }
 
   @media (min-width: 900px) {

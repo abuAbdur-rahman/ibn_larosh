@@ -2,8 +2,8 @@ import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { r2Config } from "./env";
 
 /* Server-side R2 access (S3-compatible Cloudflare R2).
-   Keys never reach the browser: public pages reference /api/media/<key>,
-   which streams objects through our route handler with long cache headers. */
+   Public pages reference /api/media/<key>: the media key is browser-visible,
+   but R2 credentials and the bucket endpoint stay server-side. */
 
 let client: S3Client | null = null;
 
@@ -24,6 +24,15 @@ function getR2Client(): S3Client {
 
 const KEY_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]*$/;
 const MAX_KEY_LENGTH = 200;
+/** Refuse to proxy anything above this; cap photos are ~50 KB–1 MB. */
+const MAX_MEDIA_BYTES = 15 * 1024 * 1024;
+
+export class MediaTooLargeError extends Error {
+  constructor() {
+    super(`R2 object exceeds the ${MAX_MEDIA_BYTES} byte proxy limit`);
+    this.name = "MediaTooLargeError";
+  }
+}
 
 function isValidMediaKey(key: string): boolean {
   return KEY_PATTERN.test(key) && key.length <= MAX_KEY_LENGTH;
@@ -34,18 +43,35 @@ function isMissingKeyError(error: unknown): boolean {
   return name === "NoSuchKey" || name === "NotFound";
 }
 
-export interface MediaObject {
-  bytes: Uint8Array;
-  contentType: string;
+function assertWithinLimit(length?: number): void {
+  if (length !== undefined && length > MAX_MEDIA_BYTES) {
+    throw new MediaTooLargeError();
+  }
 }
 
-async function readObject(key: string): Promise<MediaObject> {
+export interface MediaObject {
+  /** Streamed straight through — never fully buffered in the function. */
+  body: ReadableStream<Uint8Array>;
+  contentType: string;
+  contentLength?: number;
+}
+
+async function readObject(key: string): Promise<MediaObject | null> {
   const res = await getR2Client().send(
     new GetObjectCommand({ Bucket: r2Config().bucket, Key: key })
   );
+
+  // R2 reports ContentLength for stored objects; reject oversized media
+  // before reading a single byte.
+  assertWithinLimit(res.ContentLength);
+
+  const body = res.Body?.transformToWebStream();
+  if (!body) return null;
+
   return {
-    bytes: await res.Body!.transformToByteArray(),
+    body,
     contentType: res.ContentType ?? "application/octet-stream",
+    contentLength: res.ContentLength,
   };
 }
 

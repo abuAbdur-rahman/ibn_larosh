@@ -23,7 +23,7 @@ Status: done
 - [x] Real catalog: the 10 caps already in R2 (`bn-laroosh`), names/colours/patterns derived
       from the photos; sizes are sensible defaults pending owner confirmation
 - [x] Private-bucket media pipeline: `src/lib/r2.ts` (S3 SDK `GetObject`) +
-      `/api/media/[key]` proxy with immutable cache headers; keys never reach the browser
+      `/api/media/[key]` proxy with immutable cache headers; R2 credentials stay server-side
 - [x] Metadata: title template, descriptions, canonical `metadataBase` from
       `NEXT_PUBLIC_SITE_URL`/Vercel URL, per-cap Open Graph image
 - [x] Quality gate: `pnpm lint` + `pnpm typecheck` + `pnpm build` green

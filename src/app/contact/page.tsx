@@ -32,7 +32,7 @@ export default function ContactPage() {
         >
           <WhatsAppIcon className="ic wa" /> Chat on WhatsApp
         </a>
-        <a className="btn line block" href={`tel:${SITE.phoneDisplay}`}>
+        <a className="btn line block" href={`tel:+${SITE.phoneIntl}`}>
           <Phone className="ic" aria-hidden="true" /> Call {SITE.phoneDisplay}
         </a>
         <a className="locr" href={MAP_LINK} target="_blank" rel="noopener noreferrer">

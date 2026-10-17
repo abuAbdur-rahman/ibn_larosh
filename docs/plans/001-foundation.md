@@ -11,7 +11,7 @@ and one-repo simplicity:
 
 - **Next.js 16 App Router** gives routing, ISR caching, server actions, and image handling in one framework.
 - **Neon Postgres + Drizzle** replaces D1: typed schema/migrations in TS, pooled HTTP driver (works on Vercel edge/Node).
-- **Cloudflare R2 stays** for images — S3-compatible via `@aws-sdk/client-s3` server-side; keys never reach the browser.
+- **Cloudflare R2 stays** for images — S3-compatible via `@aws-sdk/client-s3` server-side; R2 credentials never reach the browser (media keys appear in `/api/media/<key>` URLs).
 - **Vercel deploy** replaces CF Pages. R2 remains on the CF side; only the bucket base URL connects them.
 
 ```
