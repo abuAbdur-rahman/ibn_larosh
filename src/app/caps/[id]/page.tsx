@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { CapDetail } from "@/components/cap-detail";
 import { getSeedCap, getSeedCaps } from "@/lib/seed";
@@ -11,7 +11,10 @@ export function generateStaticParams() {
   return getSeedCaps().map((cap) => ({ id: cap.id }));
 }
 
-export async function generateMetadata({ params }: CapPageProps): Promise<Metadata> {
+export async function generateMetadata(
+  { params }: CapPageProps,
+  parent: ResolvingMetadata
+): Promise<Metadata> {
   const { id } = await params;
   const cap = getSeedCap(id);
 
@@ -20,7 +23,15 @@ export async function generateMetadata({ params }: CapPageProps): Promise<Metada
   return {
     title: cap.name,
     description: cap.description,
-    openGraph: { images: [cap.images[0]] },
+    openGraph: {
+      // openGraph is shallow-merged: spread the layout's fields (siteName,
+      // locale, type) before overriding the cap-specific ones.
+      ...(await parent).openGraph,
+      title: cap.name,
+      description: cap.description,
+      url: `/caps/${cap.id}`,
+      images: [{ url: cap.images[0], alt: cap.name }],
+    },
   };
 }
 

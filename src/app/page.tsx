@@ -40,12 +40,13 @@ const PERKS = [
 
 export default function HomePage() {
   const caps = getSeedCaps();
-  // Hero advertises breadth; the featured grid owns the curated picks, so the
-  // first screenful never repeats an image.
+  // Hero advertises breadth; the featured grid owns the curated picks and
+  // skips the hero caps, so the first screenful never repeats an image.
   const slides = caps.filter((cap) => !cap.featured).slice(0, 3);
+  const slideIds = new Set(slides.map((cap) => cap.id));
   const featured = [
     ...caps.filter((cap) => cap.featured),
-    ...caps.filter((cap) => !cap.featured),
+    ...caps.filter((cap) => !cap.featured && !slideIds.has(cap.id)),
   ].slice(0, 6);
 
   return (

@@ -11,7 +11,7 @@ export function SiteFooter() {
       {SITE.address}
       <br />
       BN No. {SITE.bnNo} ·{" "}
-      <a href={`tel:${SITE.phoneDisplay}`}>{SITE.phoneDisplay}</a>
+      <a href={`tel:+${SITE.phoneIntl}`}>{SITE.phoneDisplay}</a>
       <br />
       <Link href="/contact">Contact &amp; delivery</Link>
     </footer>

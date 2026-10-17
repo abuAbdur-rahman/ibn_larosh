@@ -24,8 +24,14 @@ function nameProblem(name: string): string | null {
 
 function sizeProblem(raw: string): string | null {
   if (!raw) return null;
-  if (isBetween(Number(raw), MIN_SIZE, MAX_SIZE)) return null;
-  return `Size should be between ${MIN_SIZE} and ${MAX_SIZE} inches.`;
+  const size = Number(raw);
+  if (!isBetween(size, MIN_SIZE, MAX_SIZE)) {
+    return `Size should be between ${MIN_SIZE} and ${MAX_SIZE} inches.`;
+  }
+  if (!Number.isInteger(size * 2)) {
+    return "Size should be in half-inch steps (e.g. 22 or 22.5).";
+  }
+  return null;
 }
 
 function quantityProblem(raw: string): string | null {
