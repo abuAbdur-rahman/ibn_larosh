@@ -25,7 +25,7 @@ pnpm build && pnpm start    # production check
 Database schema: `pnpm db:push` (Drizzle Kit → Neon). Schema lives in `src/lib/db/schema.ts`
 **— arrives in Phase 2; `db:generate/push/studio` are dormant until then.**
 
-Scripts: `dev` · `build` · `start` · `lint` · `typecheck` · `db:generate` · `db:push` · `db:studio`
+Scripts: `dev` · `build` · `start` · `lint` · `typecheck` · `db:generate` · `db:push` · `db:studio` · `db:probe`
 
 ## Site map
 

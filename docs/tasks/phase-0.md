@@ -13,10 +13,15 @@ Status: in progress
 - [x] Plan/revised architecture: `docs/plans/001-foundation.md`
 - [x] CI workflow `.github/workflows/ci.yml` (lint · typecheck · build)
 - [x] `.github/workflows/ci.yml` doc coverage
-- [ ] Deps: drizzle-orm · @neondatabase/serverless · @aws-sdk/client-s3 restored (running in background — network slow)
+- [x] Deps: drizzle-orm · @neondatabase/serverless · @aws-sdk/client-s3 restored
 - [x] esbuild build scripts approved via `allowBuilds` in `pnpm-workspace.yaml` (pnpm v12 moved the package.json `pnpm.` field — it's ignored there)
 - [x] Quality gate: `pnpm lint` + `pnpm typecheck` + `pnpm build` all green
-- [ ] Audit gate: code-review-and-quality + impeccable audits, findings fixed
+- [x] Audit gate: OCR+review agent round 1 pre-commit (2 required fixes) · OCR round 2 on `dd63f47`
+      (12 findings: CI hardening; real bug — Tailwind utilities were NOT compiling, no postcss
+      config existed after my first scaffold was wiped; fresh-clone typecheck would fail on the
+      generated `LayoutProps` type; CSS dark-mode `color-scheme`; Arial fallback; boilerplate page
+      as home route; db-probe not scripted). All fixed; `@tailwindcss/turbopack` removed (unused,
+      CNA leftover). Verified utilities now compile into `.next` CSS.
 - [ ] `git init`, create public repo `ibn_larosh`, first commit `chore(setup): scaffold next app, docs, ci`
 
 ## Notes

@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
+/* placeholder page styling only — replaced by the DESIGN.md system in Phase 1 */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #faf4e1; /* cream — brand page background */
+  --foreground: #14231b; /* ink */
 }
 
 @theme inline {
@@ -16,11 +17,12 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    color-scheme: dark;
   }
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
 }

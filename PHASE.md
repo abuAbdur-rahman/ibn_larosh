@@ -5,7 +5,7 @@ Commit format: `type(scope): short description`.
 
 | Phase | Title | Scope | Status |
 |---|---|---|---|
-| 0 | Scaffold & docs | Next.js installer, docs (`AGENTS`/`DESIGN`/`PHASE`/`README`), env, git+GH repo, CI | 🔨 in progress |
+| 0 | Scaffold & docs | Next.js installer, docs (`AGENTS`/`DESIGN`/`PHASE`/`README`), env, git+GH repo, CI | ✅ done (audit-fixed) |
 | 1 | Public site | Design system in code, all public routes, seed caps, WhatsApp ordering | ⬜ pending |
 | 2 | Data layer | Drizzle/Neon schema, DB-backed catalog, R2 internals, ISR caching strategy | ⬜ pending |
 | 3 | Admin portal | Env-based login, session cookie, upload + cap CRUD, cache invalidation | ⬜ pending |
@@ -29,4 +29,5 @@ prototype `docs/reference/prototype.html` · visual spec `DESIGN.md`.
 
 | Date | Phase | Commit | Summary |
 |---|---|---|---|
-| — | — | — | (no commits yet) |
+| 2026-10-17 | 0 | `dd63f47` | scaffold + docs + CI; DB probe `SELECT 99+1` OK against Neon |
+| 2026-10-17 | 0 (audit fixes) | (this commit) | OCR round-2 fixes: postcss Tailwind wiring, portable layout types, CI hardening, branded placeholder home, db:probe script, removed unused @tailwindcss/turbopack |

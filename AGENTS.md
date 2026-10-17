@@ -27,6 +27,7 @@ Senior fullstack TypeScript dev. Stack is fixed:
 | Typecheck | `pnpm typecheck` (add if missing) |
 | DB schema push | `pnpm db:push` (needs `DATABASE_URL` in `.env`) |
 | DB UI | `pnpm db:studio` |
+| DB connectivity probe | `pnpm db:probe` (no schema needed; prints OK/FAIL, never secrets) |
 
 ## File discipline
 
