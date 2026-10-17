@@ -9,10 +9,12 @@ interface CapCardProps {
   cap: Cap;
   /** Extra class, e.g. "hcard" in horizontal scrollers. */
   className?: string;
+  /** Above-the-fold cards should load eagerly (avoids an LCP warning). */
+  priority?: boolean;
 }
 
 /** Catalog card: photo → name → sizes → View + WhatsApp order. */
-export function CapCard({ cap, className = "" }: CapCardProps) {
+export function CapCard({ cap, className = "", priority = false }: CapCardProps) {
   const category = CATEGORIES[cap.category];
 
   return (
@@ -23,7 +25,8 @@ export function CapCard({ cap, className = "" }: CapCardProps) {
           alt={cap.name}
           fill
           sizes="(max-width: 899px) 50vw, 25vw"
-          loading="lazy"
+          priority={priority}
+          loading={priority ? undefined : "lazy"}
         />
         <span className="tag">{category.label}</span>
       </Link>

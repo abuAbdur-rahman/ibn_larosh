@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { Search, SearchX } from "lucide-react";
 import { CapCard } from "./cap-card";
 import { WhatsAppIcon } from "./whatsapp-icon";
@@ -16,7 +17,10 @@ type SortKey = "new" | "size";
 
 interface CatalogBrowserProps {
   caps: Cap[];
-  initialCategory?: CategoryFilter;
+}
+
+interface CatalogViewProps extends CatalogBrowserProps {
+  initialCategory: CategoryFilter;
 }
 
 const ASK_LINK = wa(
@@ -35,7 +39,19 @@ const matchesQuery = (cap: Cap, needle: string) =>
     .toLowerCase()
     .includes(needle);
 
-export function CatalogBrowser({ caps, initialCategory = "all" }: CatalogBrowserProps) {
+/** Reads `?cat=` client-side so the catalog route stays statically cached. */
+export function CatalogBrowser({ caps }: CatalogBrowserProps) {
+  const params = useSearchParams();
+  const requested = params.get("cat");
+  const initialCategory: CategoryFilter =
+    requested && requested in CATEGORIES ? (requested as CategoryKey) : "all";
+
+  return (
+    <CatalogView key={initialCategory} caps={caps} initialCategory={initialCategory} />
+  );
+}
+
+function CatalogView({ caps, initialCategory }: CatalogViewProps) {
   const [category, setCategory] = useState<CategoryFilter>(initialCategory);
   const [size, setSize] = useState<SizeFilter>("all");
   const [query, setQuery] = useState("");
@@ -172,8 +188,8 @@ export function CatalogBrowser({ caps, initialCategory = "all" }: CatalogBrowser
       </div>
 
       <div className="cap-grid">
-        {shown.map((cap) => (
-          <CapCard cap={cap} key={cap.id} />
+        {shown.map((cap, index) => (
+          <CapCard cap={cap} key={cap.id} priority={index < 4} />
         ))}
 
         {filtered.length === 0 ? (

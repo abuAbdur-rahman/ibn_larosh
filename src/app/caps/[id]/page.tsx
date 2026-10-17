@@ -1,14 +1,17 @@
 import type { Metadata, ResolvingMetadata } from "next";
 import { notFound } from "next/navigation";
 import { CapDetail } from "@/components/cap-detail";
-import { getSeedCap, getSeedCaps } from "@/lib/seed";
+import { getCapById, getCaps } from "@/lib/caps";
+
+export const revalidate = 300;
 
 type CapPageProps = {
   params: Promise<{ id: string }>;
 };
 
-export function generateStaticParams() {
-  return getSeedCaps().map((cap) => ({ id: cap.id }));
+export async function generateStaticParams() {
+  const caps = await getCaps();
+  return caps.map((cap) => ({ id: cap.id }));
 }
 
 export async function generateMetadata(
@@ -16,7 +19,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   const { id } = await params;
-  const cap = getSeedCap(id);
+  const cap = await getCapById(id);
 
   if (!cap) return { title: "Cap not found" };
 
@@ -37,11 +40,12 @@ export async function generateMetadata(
 
 export default async function CapPage({ params }: CapPageProps) {
   const { id } = await params;
-  const cap = getSeedCap(id);
+  const cap = await getCapById(id);
+  const caps = await getCaps();
 
   if (!cap) notFound();
 
-  const more = getSeedCaps()
+  const more = caps
     .filter((other) => other.id !== cap.id)
     .sort(
       (a, b) =>
