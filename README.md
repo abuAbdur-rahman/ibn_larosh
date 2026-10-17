@@ -22,10 +22,11 @@ pnpm dev                    # http://localhost:3000
 pnpm build && pnpm start    # production check
 ```
 
-Database schema: `pnpm db:push` (Drizzle Kit → Neon). Schema lives in `src/lib/db/schema.ts`
-**— arrives in Phase 2; `db:generate/push/studio` are dormant until then.**
+Database: `caps` table is live in Neon (Drizzle schema `src/lib/db/schema.ts`).
+Apply schema with `pnpm db:push`; load the starter catalog with `pnpm db:seed` (idempotent).
+`db:generate`, `db:push`, `db:studio`, `db:probe`, `db:seed` are ready.
 
-Scripts: `dev` · `build` · `start` · `lint` · `typecheck` · `db:generate` · `db:push` · `db:studio` · `db:probe`
+Scripts: `dev` · `build` · `start` · `lint` · `typecheck` · `db:push` · `db:seed` · `db:studio` · `db:probe`
 
 ## Site map
 

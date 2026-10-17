@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getSeedCaps } from "@/lib/seed";
+import { getCaps } from "@/lib/caps";
 import { getSiteUrl } from "@/lib/site-url";
 
 const STATIC_ROUTES = [
@@ -14,8 +14,9 @@ const STATIC_ROUTES = [
   "/more",
 ];
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const base = getSiteUrl().replace(/\/$/, "");
+  const caps = await getCaps();
 
   const staticEntries = STATIC_ROUTES.map((route) => ({
     url: `${base}${route}`,
@@ -24,7 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: route === "" ? 1 : 0.7,
   }));
 
-  const capEntries = getSeedCaps().map((cap) => ({
+  const capEntries = caps.map((cap) => ({
     url: `${base}/caps/${cap.id}`,
     lastModified: new Date(cap.createdAt),
     changeFrequency: "monthly" as const,

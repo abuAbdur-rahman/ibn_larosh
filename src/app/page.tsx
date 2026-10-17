@@ -18,10 +18,12 @@ import { SectionHead } from "@/components/section-head";
 import { Steps } from "@/components/steps";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { CATEGORIES, SITE } from "@/lib/site";
-import { getSeedCaps } from "@/lib/seed";
+import { getCaps } from "@/lib/caps";
 import { ORDER_STEPS } from "@/lib/steps";
 import { wa } from "@/lib/whatsapp";
 import type { CategoryKey } from "@/lib/types";
+
+export const revalidate = 300;
 
 const CATEGORY_ICONS: Record<CategoryKey, typeof Crown> = {
   tajia: Crown,
@@ -38,8 +40,8 @@ const PERKS = [
   { icon: BadgeCheck, label: "Affordable" },
 ] as const;
 
-export default function HomePage() {
-  const caps = getSeedCaps();
+export default async function HomePage() {
+  const caps = await getCaps();
   // Hero advertises breadth; the featured grid owns the curated picks and
   // skips the hero caps, so the first screenful never repeats an image.
   const slides = caps.filter((cap) => !cap.featured).slice(0, 3);
@@ -119,8 +121,8 @@ export default function HomePage() {
         <section className="sec">
           <SectionHead title="Featured caps" href="/caps" linkLabel="See all" />
           <div className="cap-grid">
-            {featured.map((cap) => (
-              <CapCard cap={cap} key={cap.id} />
+            {featured.map((cap, index) => (
+              <CapCard cap={cap} key={cap.id} priority={index < 4} />
             ))}
           </div>
         </section>

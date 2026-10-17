@@ -26,6 +26,7 @@
 
 # local QA artifacts
 /.openchamber/
+/.tmp-*
 
 # debug
 npm-debug.log*
