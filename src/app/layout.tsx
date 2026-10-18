@@ -54,7 +54,10 @@ export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
       <body className="font-sans antialiased">
-        <a className="skip-link" href="#main">
+        <a
+          className="absolute top-[-64px] left-3 z-100 rounded-full bg-gold px-4.5 py-2.5 font-semibold text-g9 transition-[top] focus-visible:top-2"
+          href="#main"
+        >
           Skip to content
         </a>
         <SiteHeader />

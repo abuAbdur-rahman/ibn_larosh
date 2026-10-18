@@ -85,13 +85,36 @@ CSS now **1,151 lines** (from 1,460). Verified: card 18px radius + shadow, 44px 
 sticky bar 198px tall on mobile, detail hero 512px square at 22px radius, order bar fixed at
 y=709–782 above the 62px tab bar, titles 38px desktop / 30px mobile.
 
-## Stage 5 — home + admin (next)
+## Stage 5 — home + admin (done) · migration complete
 
-Home: `.hero`, `.slider*`, `.perks`, `.cat`, `.hscroll`, `.cap-grid`, `.loc`/`.locr`, `.page`,
-`.sec`, `.eye`, `.banner` (remove the remaining `.page`/`.sec`/`.banner` duplicates once the
-last consumer moves).
+Home, header, tab bar, footer, FAB, hero slider and the whole admin portal now use utilities.
 
-Admin: `.admin-*` chrome, `.password-field`/`.password-toggle`, `.site-form`.
+New: `AdminPageHeader`; `formClass` for form layouts; `--hero-glow` token; `data-admin` marker.
+
+Marker classes kept intentionally: `.tabbar`, `.fab`, `.site-footer` (targeted by the
+`body:has([data-admin])` chrome-hiding rule) and `.ic` / `.ic.wa` (shared icon sizing).
+
+### Final `globals.css`
+**284 lines** (from 1,720; −83%), and **one component selector** left (`.ic`) plus the three
+markers. What remains:
+- `@theme` tokens + shadcn variable mapping
+- Base layer (reset, body, heading weights, focus ring, selection, caret)
+- `page-in` keyframes
+- `body:has([data-admin])` chrome hiding
+- `prefers-reduced-motion` kill switch
+
+Deleted this stage: header/nav, tab bar, footer, FAB, hero/slider/dots, perks, category tiles,
+locations, banner/page/ttl/sec/eye, all `.admin-*`, `.site-form`, `.password-*`, `.skip-link`,
+`.toast`.
+
+### Verified after the sweep
+- Header 58px sticky, gold hairline shadow, gradient hero, h1 56px
+- Mobile tab bar 62px fixed at the bottom; FAB 52px at y=714
+- Desktop nav hidden < 900px, visible above
+- Admin chrome hidden via `data-admin` (tab bar `display:none` on `/admin/login`)
+- Admin pages 200: stats, table, new form, prefilled edit form
+- Perk pill 41px, category tile 132px @ 18px padding, footer 48px/72px
+- No TSX references a deleted class
 
 ## Stays in CSS
 

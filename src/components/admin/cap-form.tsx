@@ -5,6 +5,7 @@ import { useActionState, useEffect, useState, type ChangeEvent } from "react";
 import { Button, ButtonLink } from "@/components/ui-kit/button";
 import { fileInputClass, inputClass, textareaClass, fieldRowClass } from "@/components/ui-kit/field";
 import { Note } from "@/components/ui-kit/layout";
+import { formClass } from "@/components/ui-kit/field";
 import type { ActionState } from "@/lib/admin-types";
 import { CAP_CATEGORIES } from "@/lib/cap-input";
 import { CATEGORIES } from "@/lib/site";
@@ -66,11 +67,15 @@ function PhotoField({ capId, preview, onPick }: PhotoFieldProps) {
           accept="image/jpeg,image/png,image/webp"
           onChange={onPick}
         />
-        <span className="admin-hint">JPEG, PNG or WebP · up to 5 MB</span>
+        <span className="block text-xs font-medium text-mut">JPEG, PNG or WebP · up to 5 MB</span>
       </label>
       {preview ? (
         // eslint-disable-next-line @next/next/no-img-element -- local blob preview, never optimised
-        <img className="admin-preview" src={preview} alt="Selected photo preview" />
+        <img
+          className="size-40 rounded-[14px] border border-line object-cover"
+          src={preview}
+          alt="Selected photo preview"
+        />
       ) : null}
     </>
   );
@@ -81,12 +86,17 @@ function ExistingImages({ images }: { images: ExistingImage[] }) {
 
   return (
     <div>
-      <span className="admin-hint">Current photos — tick to remove on save</span>
-      <div className="admin-images">
+      <span className="block text-xs font-medium text-mut">
+        Current photos — tick to remove on save
+      </span>
+      <div className="mt-2 flex flex-wrap gap-3">
         {images.map((image) => (
-          <label className="admin-image" key={image.key}>
+          <label
+            className="grid justify-items-center gap-1.5 text-xs font-semibold text-mut [&_img]:size-24 [&_img]:rounded-xl [&_img]:border [&_img]:border-line [&_img]:object-cover"
+            key={image.key}
+          >
             <Image src={image.url} alt="" width={96} height={96} />
-            <span>
+            <span className="inline-flex items-center gap-1.5">
               <input type="checkbox" name="removeImage" value={image.key} /> Remove
             </span>
           </label>
@@ -114,7 +124,7 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
   }
 
   return (
-    <form className="site-form admin-form" action={formAction}>
+    <form className={`${formClass} max-w-[760px]`} action={formAction}>
       {capId ? <input type="hidden" name="id" value={capId} /> : null}
 
       {state.error ? <Note tone="alert">{state.error}</Note> : null}
@@ -189,13 +199,23 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
             placeholder="Ask on WhatsApp if empty"
           />
         </label>
-        <div className="admin-checks">
-          <label className="admin-check">
-            <input type="checkbox" name="available" defaultChecked={values.available} />
+        <div className="grid content-center gap-2.5 pt-1.5">
+          <label className="flex min-h-8 items-center gap-2.5 text-[13.5px] font-semibold">
+            <input
+              className="size-[18px] accent-g9"
+              type="checkbox"
+              name="available"
+              defaultChecked={values.available}
+            />
             Available for order
           </label>
-          <label className="admin-check">
-            <input type="checkbox" name="featured" defaultChecked={values.featured} />
+          <label className="flex min-h-8 items-center gap-2.5 text-[13.5px] font-semibold">
+            <input
+              className="size-[18px] accent-g9"
+              type="checkbox"
+              name="featured"
+              defaultChecked={values.featured}
+            />
             Featured on the homepage
           </label>
         </div>
@@ -215,7 +235,7 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
       <PhotoField capId={capId} preview={preview} onPick={handleFile} />
       <ExistingImages images={images} />
 
-      <div className="admin-form-actions">
+      <div className="flex flex-wrap gap-2.5">
         <Button variant="green" type="submit" disabled={pending}>
           {pending ? "Saving…" : submitLabel}
         </Button>

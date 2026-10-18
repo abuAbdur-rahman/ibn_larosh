@@ -3,7 +3,7 @@
 import { useActionState, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui-kit/button";
-import { inputClass } from "@/components/ui-kit/field";
+import { formClass, inputClass } from "@/components/ui-kit/field";
 import { Note } from "@/components/ui-kit/layout";
 import { loginAction } from "./actions";
 
@@ -14,7 +14,7 @@ export function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <form className="site-form" action={action}>
+    <form className={formClass} action={action}>
       {state.error ? <Note tone="alert">{state.error}</Note> : null}
 
       <label>
@@ -30,7 +30,7 @@ export function LoginForm() {
 
       <label>
         Password
-        <span className="password-field">
+        <span className="relative block [&_input]:pr-14">
           <input
             className={inputClass}
             name="password"
@@ -40,7 +40,7 @@ export function LoginForm() {
           />
           <button
             type="button"
-            className="password-toggle"
+            className="absolute top-1/2 right-0.5 grid size-11 -translate-y-1/2 place-items-center rounded-full text-mut hover:bg-g9/[0.07] hover:text-g9"
             onClick={() => setShowPassword((current) => !current)}
             aria-label={showPassword ? "Hide password" : "Show password"}
             aria-pressed={showPassword}
