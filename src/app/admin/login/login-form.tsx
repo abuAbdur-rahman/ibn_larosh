@@ -17,10 +17,11 @@ export function LoginForm() {
     <form className={formClass} action={action}>
       {state.error ? <Note tone="alert">{state.error}</Note> : null}
 
-      <label>
+      <label htmlFor="admin-username">
         Username
         <input
           className={inputClass}
+          id="admin-username"
           name="username"
           autoComplete="username"
           spellCheck={false}
@@ -28,11 +29,12 @@ export function LoginForm() {
         />
       </label>
 
-      <label>
+      <label htmlFor="admin-password">
         Password
         <span className="relative block [&_input]:pr-14">
           <input
             className={inputClass}
+            id="admin-password"
             name="password"
             type={showPassword ? "text" : "password"}
             autoComplete="current-password"

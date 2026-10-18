@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import {
   BadgeCheck,
@@ -27,6 +28,10 @@ import { wa } from "@/lib/whatsapp";
 import type { CategoryKey } from "@/lib/types";
 
 export const revalidate = 300;
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
 
 const CATEGORY_ICONS: Record<CategoryKey, typeof Crown> = {
   tajia: Crown,

@@ -43,6 +43,21 @@ export const metadata: Metadata = {
     type: "website",
     description:
       "Quality and fancy Hausa caps in every size, colour and design. Order directly on WhatsApp. Ilorin, Kwara State.",
+    images: [
+      {
+        url: "/og.png",
+        width: 1200,
+        height: 630,
+        alt: "IBN Larosh Enterprises — quality and fancy Hausa caps",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "IBN Larosh Enterprises — Quality Hausa Caps",
+    description:
+      "Quality and fancy Hausa caps in every size, colour and design. Order directly on WhatsApp.",
+    images: ["/og.png"],
   },
 };
 

@@ -9,7 +9,7 @@ Commit format: `type(scope): short description`.
 | 1 | Public site | Design system in code, all public routes, seed caps, WhatsApp ordering | ✅ done (audit-fixed) |
 | 2 | Data layer | Drizzle/Neon schema, DB-backed catalog, R2 internals, ISR caching strategy | ✅ done |
 | 3 | Admin portal | Env-based login, session cookie, upload + cap CRUD, cache invalidation | ✅ done |
-| 4 | Polish & deploy | SEO/OG, favicon set, image optimization flip, Vercel deploy | ⬜ pending |
+| 4 | Polish & deploy | SEO/OG, favicon set, image optimization flip, Vercel deploy | 🟡 polish done · deploy needs owner |
 
 References: business/UX `docs/plans/PLAN.md` · stack update `docs/plans/001-foundation.md` ·
 prototype `docs/reference/prototype.html` · visual spec `DESIGN.md`.
@@ -41,4 +41,5 @@ prototype `docs/reference/prototype.html` · visual spec `DESIGN.md`.
 | 2026-10-18 | — (styles) | `5d6b7e0` | CSS→Tailwind stage 2: Page/PageTitle/Section/Note/Banner primitives, `/custom` + `/sizes` rewritten, note tokens, table CSS deleted |
 | 2026-10-18 | — (styles) | `1de3838` | CSS→Tailwind stage 3: delivery/faq/about/contact/more rewritten, `LocationCard` primitive, details/summary + menu + logo CSS deleted |
 | 2026-10-18 | — (styles) | `9668751` | CSS→Tailwind stage 4: `CapGrid`/`HScroll`/`Card` primitives, cap card + catalog + detail rewritten, 309 lines of card/catalog/detail CSS deleted |
-| 2026-10-18 | — (styles) | (this commit) | CSS→Tailwind stage 5 complete: header/nav/tab bar/footer/FAB, home, admin chrome + forms; globals.css 1,151 → 284 lines, one component class left |
+| 2026-10-18 | — (styles) | `999ac9e` | CSS→Tailwind stage 5 complete: header/nav/tab bar/footer/FAB, home, admin chrome + forms; globals.css 1,151 → 284 lines, one component class left |
+| 2026-10-18 | 4 | (this commit) | polish: generated icon set + 1200×630 OG card, OG/Twitter metadata, canonical URLs on all routes, explicit form labels; full route/asset/link sweep + browser interaction tests. Deploy pending owner Vercel auth |

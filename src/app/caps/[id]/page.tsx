@@ -24,6 +24,7 @@ export async function generateMetadata(
   if (!cap) return { title: "Cap not found" };
 
   return {
+    alternates: { canonical: `/caps/${cap.id}` },
     title: cap.name,
     description: cap.description,
     openGraph: {
