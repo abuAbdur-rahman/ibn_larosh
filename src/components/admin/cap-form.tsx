@@ -1,9 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { useActionState, useEffect, useState, type ChangeEvent } from "react";
+import { useActionState } from "react";
 import { Button, ButtonLink } from "@/components/ui-kit/button";
-import { fileInputClass, inputClass, textareaClass, fieldRowClass } from "@/components/ui-kit/field";
+import { inputClass, textareaClass, fieldRowClass } from "@/components/ui-kit/field";
+import { ImageField } from "@/components/admin/image-field";
 import { Note } from "@/components/ui-kit/layout";
 import { formClass } from "@/components/ui-kit/field";
 import type { ActionState } from "@/lib/admin-types";
@@ -49,39 +50,6 @@ const EMPTY: CapFormInitial = {
   featured: false,
 };
 
-interface PhotoFieldProps {
-  capId?: string;
-  preview: string | null;
-  onPick: (event: ChangeEvent<HTMLInputElement>) => void;
-}
-
-function PhotoField({ capId, preview, onPick }: PhotoFieldProps) {
-  return (
-    <>
-      <label htmlFor="cap-photo">
-        {capId ? "Add another photo (optional)" : "Cap photo"}
-        <input
-          className={fileInputClass}
-          id="cap-photo"
-          name="image"
-          type="file"
-          accept="image/jpeg,image/png,image/webp"
-          onChange={onPick}
-        />
-        <span className="block text-xs font-medium text-mut">JPEG, PNG or WebP · up to 5 MB</span>
-      </label>
-      {preview ? (
-        // eslint-disable-next-line @next/next/no-img-element -- local blob preview, never optimised
-        <img
-          className="size-40 rounded-[14px] border border-line object-cover"
-          src={preview}
-          alt="Selected photo preview"
-        />
-      ) : null}
-    </>
-  );
-}
-
 function ExistingImages({ images }: { images: ExistingImage[] }) {
   if (images.length === 0) return null;
 
@@ -109,20 +77,7 @@ function ExistingImages({ images }: { images: ExistingImage[] }) {
 
 export function CapForm({ action, submitLabel, capId, initial, images = [] }: CapFormProps) {
   const [state, formAction, pending] = useActionState(action, initialState);
-  const [preview, setPreview] = useState<string | null>(null);
   const values = initial ?? EMPTY;
-
-  useEffect(() => {
-    return () => {
-      if (preview) URL.revokeObjectURL(preview);
-    };
-  }, [preview]);
-
-  function handleFile(event: ChangeEvent<HTMLInputElement>) {
-    const file = event.target.files?.[0];
-    if (preview) URL.revokeObjectURL(preview);
-    setPreview(file ? URL.createObjectURL(file) : null);
-  }
 
   return (
     <form className={`${formClass} max-w-[760px]`} action={formAction}>
@@ -239,7 +194,7 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
         />
       </label>
 
-      <PhotoField capId={capId} preview={preview} onPick={handleFile} />
+      <ImageField capId={capId} />
       <ExistingImages images={images} />
 
       <div className="flex flex-wrap gap-2.5">
