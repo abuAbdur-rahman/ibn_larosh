@@ -5,6 +5,8 @@ import Link from "next/link";
 import { useState } from "react";
 import { ChevronLeft, Package, Ruler, Truck } from "lucide-react";
 import { CapCard } from "./cap-card";
+import { ButtonAnchor } from "./ui-kit/button";
+import { Chip, ChipTag } from "./ui-kit/chip";
 import { SectionHead } from "./section-head";
 import { WhatsAppIcon } from "./whatsapp-icon";
 import { CATEGORIES } from "@/lib/site";
@@ -38,7 +40,7 @@ export function CapDetail({ cap, more }: CapDetailProps) {
         </div>
 
         <div className="dinfo">
-          <span className="chip on">{CATEGORIES[cap.category].label}</span>
+          <ChipTag selected>{CATEGORIES[cap.category].label}</ChipTag>
           <h1>{cap.name}</h1>
           <p className="d">{cap.description}</p>
           <p className="price-note">
@@ -52,15 +54,15 @@ export function CapDetail({ cap, more }: CapDetailProps) {
             <h2 className="blk-title">Choose size</h2>
             <div className="sizes" role="group" aria-label="Choose a size">
               {cap.sizes.map((size) => (
-                <button
-                  type="button"
-                  className="chip"
+                <Chip
                   key={size}
+                  selected={selectedSize === size}
                   aria-pressed={selectedSize === size}
                   onClick={() => setSelectedSize(size)}
+                  className="min-w-[58px] justify-center text-[15px]"
                 >
                   {size}
-                </button>
+                </Chip>
               ))}
             </div>
             <p className="blk-hint">
@@ -72,15 +74,14 @@ export function CapDetail({ cap, more }: CapDetailProps) {
             <h2 className="blk-title">Choose colour</h2>
             <div className="sizes" role="group" aria-label="Choose a colour">
               {cap.colors.map((color) => (
-                <button
-                  type="button"
-                  className="chip"
+                <Chip
                   key={color}
+                  selected={selectedColor === color}
                   aria-pressed={selectedColor === color}
                   onClick={() => setSelectedColor(color)}
                 >
                   {color}
-                </button>
+                </Chip>
               ))}
             </div>
           </div>
@@ -106,14 +107,15 @@ export function CapDetail({ cap, more }: CapDetailProps) {
                 {selectedSize} · {selectedColor}
               </b>
             </div>
-            <a
-              className="btn wa"
+            <ButtonAnchor
+              variant="wa"
+              className="flex-1"
               href={orderLink(cap, selectedSize, selectedColor)}
               target="_blank"
               rel="noopener noreferrer"
             >
               <WhatsAppIcon className="ic wa" /> Order on WhatsApp
-            </a>
+            </ButtonAnchor>
           </div>
         </div>
       </div>

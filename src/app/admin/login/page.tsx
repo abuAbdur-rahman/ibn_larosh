@@ -3,6 +3,7 @@ import Link from "next/link";
 import { ChevronLeft } from "lucide-react";
 import { redirect } from "next/navigation";
 import { LoginForm } from "./login-form";
+import { Panel } from "@/components/ui-kit/field";
 import { hasSession } from "@/lib/session";
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export default async function AdminLoginPage() {
   return (
     <div className="page">
       <div className="admin-login">
-        <div className="panel">
+        <Panel>
           <span className="eye admin-eyebrow">IBN Larosh · Admin</span>
           <h1>Sign in</h1>
           <p className="admin-sub">
@@ -28,7 +29,7 @@ export default async function AdminLoginPage() {
               <ChevronLeft className="ic" aria-hidden="true" /> Back to the shop
             </Link>
           </p>
-        </div>
+        </Panel>
       </div>
     </div>
   );

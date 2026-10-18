@@ -1,8 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { useActionState, useEffect, useState, type ChangeEvent } from "react";
+import { Button, ButtonLink } from "@/components/ui-kit/button";
+import { fileInputClass, inputClass, textareaClass, fieldRowClass } from "@/components/ui-kit/field";
 import type { ActionState } from "@/lib/admin-types";
 import { CAP_CATEGORIES } from "@/lib/cap-input";
 import { CATEGORIES } from "@/lib/site";
@@ -58,7 +59,7 @@ function PhotoField({ capId, preview, onPick }: PhotoFieldProps) {
       <label>
         {capId ? "Add another photo (optional)" : "Cap photo"}
         <input
-          className="input admin-file"
+          className={fileInputClass}
           name="image"
           type="file"
           accept="image/jpeg,image/png,image/webp"
@@ -124,7 +125,7 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
       <label>
         Cap name
         <input
-          className="input"
+          className={inputClass}
           name="name"
           defaultValue={values.name}
           maxLength={80}
@@ -133,10 +134,10 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
         />
       </label>
 
-      <div className="field-row">
+      <div className={fieldRowClass}>
         <label>
           Cap type
-          <select className="input" name="category" defaultValue={values.category}>
+          <select className={inputClass} name="category" defaultValue={values.category}>
             {CAP_CATEGORIES.map((category) => (
               <option key={category} value={category}>
                 {CATEGORIES[category].label}
@@ -147,7 +148,7 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
         <label>
           Sizes (inches)
           <input
-            className="input"
+            className={inputClass}
             name="sizes"
             defaultValue={values.sizes}
             placeholder="21.5, 22, 23"
@@ -156,11 +157,11 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
         </label>
       </div>
 
-      <div className="field-row">
+      <div className={fieldRowClass}>
         <label>
           Colours
           <input
-            className="input"
+            className={inputClass}
             name="colors"
             defaultValue={values.colors}
             placeholder="Blue, Gold, Silver"
@@ -169,7 +170,7 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
         <label>
           Tags
           <input
-            className="input"
+            className={inputClass}
             name="tags"
             defaultValue={values.tags}
             placeholder="geometric, woven"
@@ -177,11 +178,11 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
         </label>
       </div>
 
-      <div className="field-row">
+      <div className={fieldRowClass}>
         <label>
           Price (₦, optional)
           <input
-            className="input"
+            className={inputClass}
             name="price"
             type="number"
             min={0}
@@ -206,7 +207,7 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
       <label>
         Description
         <textarea
-          className="input"
+          className={textareaClass}
           name="description"
           defaultValue={values.description}
           maxLength={600}
@@ -218,12 +219,12 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
       <ExistingImages images={images} />
 
       <div className="admin-form-actions">
-        <button className="btn green" type="submit" disabled={pending}>
+        <Button variant="green" type="submit" disabled={pending}>
           {pending ? "Saving…" : submitLabel}
-        </button>
-        <Link className="btn line" href="/admin">
+        </Button>
+        <ButtonLink variant="line" href="/admin">
           Cancel
-        </Link>
+        </ButtonLink>
       </div>
     </form>
   );

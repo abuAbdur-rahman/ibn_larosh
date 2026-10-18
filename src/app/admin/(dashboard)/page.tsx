@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { desc } from "drizzle-orm";
 import { Plus } from "lucide-react";
 import { AdminCapRow } from "@/components/admin/cap-row";
+import { ButtonLink } from "@/components/ui-kit/button";
+import { Panel } from "@/components/ui-kit/field";
 import { getDb } from "@/lib/db";
 import { caps as capsTable } from "@/lib/db/schema";
 import { rowToCap } from "@/lib/caps";
@@ -60,9 +61,9 @@ export default async function AdminCatalogPage({ searchParams }: AdminPageProps)
           <h1 className="admin-title">Catalog</h1>
           <p className="admin-sub">Add caps, change prices, hide sold-out designs.</p>
         </div>
-        <Link className="btn green" href="/admin/caps/new">
+        <ButtonLink variant="green" href="/admin/caps/new">
           <Plus className="ic" aria-hidden="true" /> New cap
-        </Link>
+        </ButtonLink>
       </div>
 
       <Notice notice={notice} />
@@ -89,12 +90,12 @@ export default async function AdminCatalogPage({ searchParams }: AdminPageProps)
       </div>
 
       {caps.length === 0 && !dbFailed ? (
-        <div className="panel admin-empty">
+        <Panel className="admin-empty">
           <p>No caps yet. Add your first cap to start the catalog.</p>
-          <Link className="btn green" href="/admin/caps/new">
+          <ButtonLink variant="green" href="/admin/caps/new">
             Add a cap
-          </Link>
-        </div>
+          </ButtonLink>
+        </Panel>
       ) : null}
 
       {caps.length > 0 ? (

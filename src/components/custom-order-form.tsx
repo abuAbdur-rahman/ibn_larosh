@@ -1,6 +1,8 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { Button } from "./ui-kit/button";
+import { inputClass, textareaClass, fieldRowClass } from "./ui-kit/field";
 import { WhatsAppIcon } from "./whatsapp-icon";
 import { CATEGORIES } from "@/lib/site";
 import { buildCustomOrder, MAX_NOTES } from "@/lib/custom-order";
@@ -36,7 +38,7 @@ export function CustomOrderForm() {
       <label>
         Your name
         <input
-          className="input"
+          className={inputClass}
           name="name"
           placeholder="e.g. Abdullahi"
           autoComplete="name"
@@ -45,10 +47,10 @@ export function CustomOrderForm() {
         />
       </label>
 
-      <div className="field-row">
+      <div className={fieldRowClass}>
         <label>
           Cap type
-          <select className="input" name="type" defaultValue={CATEGORIES.tajia.label}>
+          <select className={inputClass} name="type" defaultValue={CATEGORIES.tajia.label}>
             {Object.values(CATEGORIES).map((category) => (
               <option key={category.label} value={category.label}>
                 {category.label}
@@ -59,7 +61,7 @@ export function CustomOrderForm() {
         <label>
           Size (inches)
           <input
-            className="input"
+            className={inputClass}
             name="size"
             inputMode="decimal"
             placeholder="e.g. 22"
@@ -71,11 +73,11 @@ export function CustomOrderForm() {
         </label>
       </div>
 
-      <div className="field-row">
+      <div className={fieldRowClass}>
         <label>
           Quantity
           <input
-            className="input"
+            className={inputClass}
             name="qty"
             type="number"
             min={1}
@@ -88,7 +90,7 @@ export function CustomOrderForm() {
         <label>
           Colours
           <input
-            className="input"
+            className={inputClass}
             name="colors"
             placeholder="e.g. Navy and gold"
             maxLength={120}
@@ -99,16 +101,16 @@ export function CustomOrderForm() {
       <label>
         Design notes
         <textarea
-          className="input"
+          className={textareaClass}
           name="notes"
           maxLength={MAX_NOTES}
           placeholder="Describe the pattern. You can send a reference photo in the chat."
         />
       </label>
 
-      <button className="btn wa block" type="submit">
+      <Button variant="wa" block type="submit">
         <WhatsAppIcon className="ic wa" /> Send on WhatsApp
-      </button>
+      </Button>
     </form>
   );
 }

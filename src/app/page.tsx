@@ -13,6 +13,7 @@ import {
   Truck,
 } from "lucide-react";
 import { CapCard } from "@/components/cap-card";
+import { ButtonAnchor, ButtonLink } from "@/components/ui-kit/button";
 import { HeroSlider } from "@/components/hero-slider";
 import { SectionHead } from "@/components/section-head";
 import { Steps } from "@/components/steps";
@@ -68,17 +69,17 @@ export default async function HomePage() {
               suits your style and your kaftan.
             </p>
             <div className="cta">
-              <Link className="btn gold" href="/caps">
+              <ButtonLink variant="gold" href="/caps">
                 <LayoutGrid className="ic" aria-hidden="true" /> Browse caps
-              </Link>
-              <a
-                className="btn wa"
+              </ButtonLink>
+              <ButtonAnchor
+                variant="wa"
                 href={wa("Assalamu alaikum, I'd like to order a cap.")}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <WhatsAppIcon className="ic wa" /> Order
-              </a>
+              </ButtonAnchor>
             </div>
           </div>
           <HeroSlider slides={slides} />
@@ -139,9 +140,9 @@ export default async function HomePage() {
               Tell us the colours, pattern and size. We weave it for you. Bulk orders welcome.
             </p>
             <div>
-              <Link className="btn gold" href="/custom">
+              <ButtonLink variant="gold" href="/custom">
                 <Scissors className="ic" aria-hidden="true" /> Start a custom order
-              </Link>
+              </ButtonLink>
             </div>
           </div>
         </section>

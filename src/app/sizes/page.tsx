@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { SectionHead } from "@/components/section-head";
 import { Steps } from "@/components/steps";
+import { ButtonAnchor } from "@/components/ui-kit/button";
+import { Panel } from "@/components/ui-kit/field";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { SIZE_TABLE } from "@/lib/site";
 import { MEASURE_STEPS } from "@/lib/steps";
@@ -24,7 +26,7 @@ export default function SizesPage() {
 
       <section className="sec">
         <SectionHead title="Size chart" />
-        <div className="panel">
+        <Panel>
           <table>
             <thead>
               <tr>
@@ -43,7 +45,7 @@ export default function SizesPage() {
               ))}
             </tbody>
           </table>
-        </div>
+        </Panel>
       </section>
 
       <section className="sec">
@@ -54,14 +56,14 @@ export default function SizesPage() {
             available.
           </p>
           <div>
-            <a
-              className="btn wa"
+            <ButtonAnchor
+              variant="wa"
               href={wa("Assalamu alaikum, my head measures ___ inches. Which size should I get?")}
               target="_blank"
               rel="noopener noreferrer"
             >
               <WhatsAppIcon className="ic wa" /> Ask about size
-            </a>
+            </ButtonAnchor>
           </div>
         </div>
       </section>

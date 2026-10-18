@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { MapPin, Phone } from "lucide-react";
 import { SectionHead } from "@/components/section-head";
+import { ButtonAnchor } from "@/components/ui-kit/button";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { SITE } from "@/lib/site";
 import { wa } from "@/lib/whatsapp";
@@ -24,17 +25,18 @@ export default function ContactPage() {
       </div>
 
       <div className="stack">
-        <a
-          className="btn wa block"
+        <ButtonAnchor
+          variant="wa"
+          block
           href={wa("Assalamu alaikum")}
           target="_blank"
           rel="noopener noreferrer"
         >
           <WhatsAppIcon className="ic wa" /> Chat on WhatsApp
-        </a>
-        <a className="btn line block" href={`tel:+${SITE.phoneIntl}`}>
+        </ButtonAnchor>
+        <ButtonAnchor variant="line" block href={`tel:+${SITE.phoneIntl}`}>
           <Phone className="ic" aria-hidden="true" /> Call {SITE.phoneDisplay}
-        </a>
+        </ButtonAnchor>
         <a className="locr" href={MAP_LINK} target="_blank" rel="noopener noreferrer">
           <MapPin className="ic" aria-hidden="true" />
           <div>

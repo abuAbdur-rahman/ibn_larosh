@@ -4,6 +4,8 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { Search, SearchX } from "lucide-react";
 import { CapCard } from "./cap-card";
+import { Button, ButtonAnchor } from "./ui-kit/button";
+import { Chip } from "./ui-kit/chip";
 import { WhatsAppIcon } from "./whatsapp-icon";
 import { CATEGORIES } from "@/lib/site";
 import { wa } from "@/lib/whatsapp";
@@ -112,9 +114,8 @@ function CatalogView({ caps, initialCategory }: CatalogViewProps) {
         </label>
 
         <div className="chips" role="group" aria-label="Filter by type">
-          <button
-            type="button"
-            className="chip"
+          <Chip
+            selected={category === "all"}
             aria-pressed={category === "all"}
             onClick={() => {
               setCategory("all");
@@ -122,13 +123,12 @@ function CatalogView({ caps, initialCategory }: CatalogViewProps) {
             }}
           >
             All
-          </button>
+          </Chip>
           {(Object.entries(CATEGORIES) as [CategoryKey, { label: string }][]).map(
             ([key, value]) => (
-              <button
-                type="button"
-                className="chip"
+              <Chip
                 key={key}
+                selected={category === key}
                 aria-pressed={category === key}
                 onClick={() => {
                   setCategory(key);
@@ -136,7 +136,7 @@ function CatalogView({ caps, initialCategory }: CatalogViewProps) {
                 }}
               >
                 {value.label}
-              </button>
+              </Chip>
             )
           )}
         </div>
@@ -145,9 +145,8 @@ function CatalogView({ caps, initialCategory }: CatalogViewProps) {
           <span className="lab" aria-hidden="true" style={{ alignSelf: "center" }}>
             Size
           </span>
-          <button
-            type="button"
-            className="chip"
+          <Chip
+            selected={size === "all"}
             aria-pressed={size === "all"}
             onClick={() => {
               setSize("all");
@@ -155,12 +154,11 @@ function CatalogView({ caps, initialCategory }: CatalogViewProps) {
             }}
           >
             Any
-          </button>
+          </Chip>
           {sizes.map((value) => (
-            <button
-              type="button"
-              className="chip"
+            <Chip
               key={value}
+              selected={size === value}
               aria-pressed={size === value}
               onClick={() => {
                 setSize(value);
@@ -168,7 +166,7 @@ function CatalogView({ caps, initialCategory }: CatalogViewProps) {
               }}
             >
               {value}
-            </button>
+            </Chip>
           ))}
         </div>
       </div>
@@ -196,25 +194,29 @@ function CatalogView({ caps, initialCategory }: CatalogViewProps) {
           <div className="empty">
             <SearchX className="ic" aria-hidden="true" />
             <p>No caps match your filters.</p>
-            <button type="button" className="btn line" onClick={resetFilters}>
+            <Button variant="line" onClick={resetFilters}>
               Clear filters
-            </button>
-            <a className="btn wa" href={ASK_LINK} target="_blank" rel="noopener noreferrer">
+            </Button>
+            <ButtonAnchor
+              variant="wa"
+              href={ASK_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
               <WhatsAppIcon className="ic wa" /> Ask on WhatsApp
-            </a>
+            </ButtonAnchor>
           </div>
         ) : null}
       </div>
 
       {visible < filtered.length ? (
         <div className="sec" style={{ textAlign: "center" }}>
-          <button
-            type="button"
-            className="btn line"
+          <Button
+            variant="line"
             onClick={() => setVisible((current) => current + PAGE_SIZE)}
           >
             Load more caps
-          </button>
+          </Button>
         </div>
       ) : null}
     </div>

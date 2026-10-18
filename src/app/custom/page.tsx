@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CustomOrderForm } from "@/components/custom-order-form";
+import { Panel } from "@/components/ui-kit/field";
 
 export const metadata: Metadata = {
   title: "Custom order",
@@ -18,9 +19,9 @@ export default function CustomPage() {
         </p>
       </div>
 
-      <div className="panel">
+      <Panel>
         <CustomOrderForm />
-      </div>
+      </Panel>
 
       <section className="sec">
         <div className="note">
