@@ -32,6 +32,8 @@ Status: polish done · deploy blocked on owner (Vercel auth)
 - [x] **Zod validation** (`src/lib/cap-schema.ts`) for `/admin/caps/new` and edit: name, category,
       sizes (18–26, half-inch, 1–12), colours/tags limits, price range, description length.
       Product-facing messages; server action maps issues into the form error block.
+- [x] **Availability/featured controls** are inline toggle switches (`role="switch"`, keyboard
+      focusable, 44px label target) instead of stacked checkboxes.
 - [ ] **Vercel deploy** — requires the owner's Vercel login and env values (see below).
 
 ## Deploy steps (owner)

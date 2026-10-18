@@ -145,41 +145,59 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
         </label>
       </div>
 
-      <div className={fieldRowClass}>
-        <label htmlFor="cap-price">
-          Price (₦, optional)
-          <input
-            className={inputClass}
-            id="cap-price"
-            name="price"
-            type="number"
-            min={0}
-            step="0.01"
-            inputMode="decimal"
-            defaultValue={values.price}
-            placeholder="Ask on WhatsApp if empty"
-          />
-        </label>
-        <div className="grid content-center gap-2.5 pt-1.5">
-          <label className="flex min-h-8 items-center gap-2.5 text-[13.5px] font-semibold">
+      <label htmlFor="cap-price" className="max-w-[280px]">
+        Price (₦, optional)
+        <input
+          className={inputClass}
+          id="cap-price"
+          name="price"
+          type="number"
+          min={0}
+          step="0.01"
+          inputMode="decimal"
+          defaultValue={values.price}
+          placeholder="Ask on WhatsApp if empty"
+        />
+      </label>
+
+      <div className="flex flex-wrap content-center items-center gap-x-7 gap-y-3">
+        <label className="min-h-8 cursor-pointer">
+          <span className="inline-flex items-center gap-2.5">
             <input
-              className="size-[18px] accent-g9"
+              className="peer sr-only"
               type="checkbox"
+              role="switch"
               name="available"
               defaultChecked={values.available}
             />
-            Available for order
-          </label>
-          <label className="flex min-h-8 items-center gap-2.5 text-[13.5px] font-semibold">
+            <span
+              aria-hidden="true"
+              className="relative h-6 w-11 flex-none rounded-full bg-line transition-colors peer-checked:bg-g7 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-g9 peer-checked:[&>span]:translate-x-5"
+            >
+              <span className="absolute top-0.5 left-0.5 size-5 rounded-full bg-white shadow-[0_1px_3px_rgba(10,59,34,0.25)] transition-transform" />
+            </span>
+            <span className="text-[13.5px] font-semibold">Available for order</span>
+          </span>
+        </label>
+
+        <label className="min-h-8 cursor-pointer">
+          <span className="inline-flex items-center gap-2.5">
             <input
-              className="size-[18px] accent-g9"
+              className="peer sr-only"
               type="checkbox"
+              role="switch"
               name="featured"
               defaultChecked={values.featured}
             />
-            Featured on the homepage
-          </label>
-        </div>
+            <span
+              aria-hidden="true"
+              className="relative h-6 w-11 flex-none rounded-full bg-line transition-colors peer-checked:bg-g7 peer-focus-visible:outline-2 peer-focus-visible:outline-offset-2 peer-focus-visible:outline-g9 peer-checked:[&>span]:translate-x-5"
+            >
+              <span className="absolute top-0.5 left-0.5 size-5 rounded-full bg-white shadow-[0_1px_3px_rgba(10,59,34,0.25)] transition-transform" />
+            </span>
+            <span className="text-[13.5px] font-semibold">Featured on the homepage</span>
+          </span>
+        </label>
       </div>
 
       <label htmlFor="cap-description">
