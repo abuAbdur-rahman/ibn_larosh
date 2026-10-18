@@ -37,4 +37,5 @@ prototype `docs/reference/prototype.html` · visual spec `DESIGN.md`.
 | 2026-10-17 | 1 | `7573662` | public site: brand tokens + Playfair/Inter, shadcn primitives, header/tab bar/FAB, all public routes, real 10-cap catalog from R2 via private `/api/media` proxy, WhatsApp ordering; audit fixes (image stretch, logo, heading weight, contrast, spacing, order-bar containing block); fallow clean |
 | 2026-10-18 | 2 | `517e831` | Neon + Drizzle: `caps` table pushed, 10 caps seeded (`pnpm db:seed`), catalog reads DB via `src/lib/caps.ts` with seed fallback, static ISR 300s, `/caps?cat=` moved client-side |
 | 2026-10-18 | 3 | `8a7dc99` | admin portal: env login + HMAC session, `proxy.ts` guard, R2 uploads (magic-byte + 5 MB), cap CRUD, toggles, delete with confirm, `revalidatePath` invalidation, password toggle |
-| 2026-10-18 | — (styles) | (this commit) | CSS→Tailwind stage 1: Button/Chip/Input/Panel/SectionHead/Steps primitives; ~180 lines removed from globals.css; browser-verified parity |
+| 2026-10-18 | — (styles) | `7d02dc8` | CSS→Tailwind stage 1: Button/Chip/Input/Panel/SectionHead/Steps primitives; ~180 lines removed from globals.css; browser-verified parity |
+| 2026-10-18 | — (styles) | (this commit) | CSS→Tailwind stage 2: Page/PageTitle/Section/Note/Banner primitives, `/custom` + `/sizes` rewritten, note tokens, table CSS deleted |

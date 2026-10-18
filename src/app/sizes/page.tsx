@@ -3,6 +3,7 @@ import { SectionHead } from "@/components/section-head";
 import { Steps } from "@/components/steps";
 import { ButtonAnchor } from "@/components/ui-kit/button";
 import { Panel } from "@/components/ui-kit/field";
+import { Banner, Page, PageTitle, Section } from "@/components/ui-kit/layout";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { SIZE_TABLE } from "@/lib/site";
 import { MEASURE_STEPS } from "@/lib/steps";
@@ -14,48 +15,48 @@ export const metadata: Metadata = {
     "Hausa cap size chart in inches and centimetres, plus how to measure your head for the right fit. Custom sizes available.",
 };
 
+const TH = "border-b border-line pb-2.5 text-[11px] font-normal tracking-[0.12em] uppercase text-mut";
+const TD = "border-b border-line py-2.5 text-[14px]";
+
 export default function SizesPage() {
   return (
-    <div className="page">
-      <div className="ttl">
-        <h1>Size guide</h1>
-        <p>Cap sizes are head circumference in inches.</p>
-      </div>
+    <Page>
+      <PageTitle title="Size guide" lead="Cap sizes are head circumference in inches." />
 
       <Steps steps={MEASURE_STEPS} />
 
-      <section className="sec">
+      <Section>
         <SectionHead title="Size chart" />
         <Panel>
-          <table>
+          <table className="w-full border-collapse text-[14px]">
             <thead>
               <tr>
-                <th scope="col">Cap size (in)</th>
-                <th scope="col">Head (cm)</th>
+                <th scope="col" className={`${TH} text-left`}>
+                  Cap size (in)
+                </th>
+                <th scope="col" className={`${TH} text-left`}>
+                  Head (cm)
+                </th>
               </tr>
             </thead>
             <tbody>
               {SIZE_TABLE.map((row) => (
                 <tr key={row.inches}>
-                  <td>
+                  <td className={`${TD} tabular-nums`}>
                     <b>{row.inches}</b>
                   </td>
-                  <td>{row.cm} cm</td>
+                  <td className={`${TD} tabular-nums`}>{row.cm} cm</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </Panel>
-      </section>
+      </Section>
 
-      <section className="sec">
-        <div className="banner">
-          <h2>Between sizes?</h2>
-          <p>
-            Send us your measurement on WhatsApp and we&apos;ll advise. Custom sizes are
-            available.
-          </p>
-          <div>
+      <Section>
+        <Banner
+          title="Between sizes?"
+          action={
             <ButtonAnchor
               variant="wa"
               href={wa("Assalamu alaikum, my head measures ___ inches. Which size should I get?")}
@@ -64,9 +65,12 @@ export default function SizesPage() {
             >
               <WhatsAppIcon className="ic wa" /> Ask about size
             </ButtonAnchor>
-          </div>
-        </div>
-      </section>
-    </div>
+          }
+        >
+          Send us your measurement on WhatsApp and we&apos;ll advise. Custom sizes are
+          available.
+        </Banner>
+      </Section>
+    </Page>
   );
 }

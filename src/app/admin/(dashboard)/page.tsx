@@ -4,6 +4,7 @@ import { Plus } from "lucide-react";
 import { AdminCapRow } from "@/components/admin/cap-row";
 import { ButtonLink } from "@/components/ui-kit/button";
 import { Panel } from "@/components/ui-kit/field";
+import { Note } from "@/components/ui-kit/layout";
 import { getDb } from "@/lib/db";
 import { caps as capsTable } from "@/lib/db/schema";
 import { rowToCap } from "@/lib/caps";
@@ -40,11 +41,7 @@ async function loadCaps(): Promise<{ caps: Cap[]; dbFailed: boolean }> {
 function Notice({ notice }: { notice?: string }) {
   const message = notice ? NOTICES[notice] : undefined;
   if (!message) return null;
-  return (
-    <div className="note" role="status">
-      {message}
-    </div>
-  );
+  return <Note tone="status">{message}</Note>;
 }
 
 export default async function AdminCatalogPage({ searchParams }: AdminPageProps) {
@@ -69,9 +66,9 @@ export default async function AdminCatalogPage({ searchParams }: AdminPageProps)
       <Notice notice={notice} />
 
       {dbFailed ? (
-        <div className="note" role="alert">
+        <Note tone="alert">
           Could not reach the database. Check <code>DATABASE_URL</code> and try again.
-        </div>
+        </Note>
       ) : null}
 
       <div className="admin-stats">
