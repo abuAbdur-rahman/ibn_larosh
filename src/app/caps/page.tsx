@@ -17,10 +17,10 @@ export default async function CatalogPage() {
   return (
     <Suspense
       fallback={
-        <div className="page">
-          <div className="ttl">
-            <h1>Browse caps</h1>
-            <p>Loading caps…</p>
+        <div className="mx-auto max-w-[1100px] px-3.5">
+          <div className="pt-[clamp(32px,5vw,48px)] pb-4.5">
+            <h1 className="text-[clamp(30px,4vw,40px)] text-g9">Browse caps</h1>
+            <p className="mt-2 text-[15px] text-mut">Loading caps…</p>
           </div>
         </div>
       }

@@ -64,11 +64,34 @@ Migrated: `/delivery`, `/faq`, `/about`, `/contact`, `/more`.
 
 CSS now 1,460 lines (from 1,533). `.loc`/`.locr` remain for home until stage 5.
 
-## Stage 4 — catalog + detail (next)
+## Stage 4 — catalog + detail (done)
 
-`/caps` and `/caps/[id]`: `.fbar`, `.search`, `.meta`, `.empty`, `.hscroll`, `.cap-grid`,
-`.card`, `.ph`, `.tag`, `.cb`, `.crow`, `.hcard`, `.dgrid`, `.big`, `.dinfo`, `.blk*`,
-`.sizes`, `.facts`, `.obar`, `.back`.
+New primitives in `src/components/ui-kit/catalog.tsx`: `CapGrid`, `HScroll`, `Card`, `hCardClass`.
+
+- `CapCard` rebuilt with `Card` + utilities: square photo, tag pill, title/sizes block, View +
+  WhatsApp actions. Hover zoom (`min-[900px]:hover:[&_img]`) and tap zoom (`[&:active_img]`)
+  confirmed in the compiled CSS.
+- `CatalogBrowser` rewritten: sticky filter bar, search field (focus ring), type/size chip rows,
+  result count + sort select, `CapGrid`, empty state, load more.
+- `CapDetail` rewritten: back link, square hero, size/colour chips, facts, and the order bar
+  (fixed on mobile above the tab bar, static from 900px). Order-bar offset uses CSS vars
+  `--tab` / `--safe` from the tokens layer.
+- 404 page migrated off `.empty`.
+- Deleted from CSS: `.card*`, `.ph*`, `.tag`, `.cb*`, `.crow*`, `.hcard`, `.ttl*`, `.fbar`,
+  `.search*`, `.chips`, `.lab`, `.meta*`, `.empty`, `.back`, `.dgrid`, `.big*`, `.dinfo*`,
+  `.blk*`, `.price-note*`, `.sizes`, `.facts`, `.fact*`, `.obar*`, `.pbar` + desktop overrides.
+
+CSS now **1,151 lines** (from 1,460). Verified: card 18px radius + shadow, 44px actions,
+sticky bar 198px tall on mobile, detail hero 512px square at 22px radius, order bar fixed at
+y=709–782 above the 62px tab bar, titles 38px desktop / 30px mobile.
+
+## Stage 5 — home + admin (next)
+
+Home: `.hero`, `.slider*`, `.perks`, `.cat`, `.hscroll`, `.cap-grid`, `.loc`/`.locr`, `.page`,
+`.sec`, `.eye`, `.banner` (remove the remaining `.page`/`.sec`/`.banner` duplicates once the
+last consumer moves).
+
+Admin: `.admin-*` chrome, `.password-field`/`.password-toggle`, `.site-form`.
 
 ## Stays in CSS
 

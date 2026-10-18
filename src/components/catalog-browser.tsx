@@ -5,7 +5,9 @@ import { useSearchParams } from "next/navigation";
 import { Search, SearchX } from "lucide-react";
 import { CapCard } from "./cap-card";
 import { Button, ButtonAnchor } from "./ui-kit/button";
+import { CapGrid } from "./ui-kit/catalog";
 import { Chip } from "./ui-kit/chip";
+import { Page, PageTitle, Section } from "./ui-kit/layout";
 import { WhatsAppIcon } from "./whatsapp-icon";
 import { CATEGORIES } from "@/lib/site";
 import { wa } from "@/lib/whatsapp";
@@ -90,17 +92,16 @@ function CatalogView({ caps, initialCategory }: CatalogViewProps) {
   };
 
   return (
-    <div className="page">
-      <div className="ttl">
-        <h1>Browse caps</h1>
-        <p>Tap a cap to see sizes and order on WhatsApp.</p>
-      </div>
-
+    <Page>
+      <PageTitle
+        title="Browse caps"
+        lead="Tap a cap to see sizes and order on WhatsApp."
+      />
       <h2 className="sr-only">All caps</h2>
 
-      <div className="fbar">
-        <label className="search">
-          <Search className="ic" aria-hidden="true" />
+      <div className="sticky top-[58px] z-20 -mx-3.5 bg-cream px-3.5 pt-3.5 pb-3">
+        <label className="flex h-[52px] items-center gap-2.5 rounded-full border-[1.5px] border-line bg-paper px-4.5 focus-within:border-g7 focus-within:shadow-[0_0_0_3px_rgba(18,104,58,0.18)]">
+          <Search className="ic text-mut" aria-hidden="true" />
           <input
             type="search"
             placeholder="Search name or colour"
@@ -110,10 +111,15 @@ function CatalogView({ caps, initialCategory }: CatalogViewProps) {
               setVisible(PAGE_SIZE);
             }}
             aria-label="Search caps by name or colour"
+            className="w-full border-0 bg-transparent outline-none"
           />
         </label>
 
-        <div className="chips" role="group" aria-label="Filter by type">
+        <div
+          className="flex gap-2.5 overflow-x-auto pt-3.5 pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          role="group"
+          aria-label="Filter by type"
+        >
           <Chip
             selected={category === "all"}
             aria-pressed={category === "all"}
@@ -141,8 +147,15 @@ function CatalogView({ caps, initialCategory }: CatalogViewProps) {
           )}
         </div>
 
-        <div className="chips" role="group" aria-label="Filter by size">
-          <span className="lab" aria-hidden="true" style={{ alignSelf: "center" }}>
+        <div
+          className="flex gap-2.5 overflow-x-auto pt-3.5 pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          role="group"
+          aria-label="Filter by size"
+        >
+          <span
+            className="self-center text-[11px] font-bold tracking-[0.14em] text-mut uppercase"
+            aria-hidden="true"
+          >
             Size
           </span>
           <Chip
@@ -171,7 +184,7 @@ function CatalogView({ caps, initialCategory }: CatalogViewProps) {
         </div>
       </div>
 
-      <div className="meta">
+      <div className="my-5 flex items-center justify-between text-[13px] text-mut">
         <span aria-live="polite">
           {filtered.length} cap{filtered.length === 1 ? "" : "s"}
         </span>
@@ -179,19 +192,20 @@ function CatalogView({ caps, initialCategory }: CatalogViewProps) {
           value={sort}
           onChange={(event) => setSort(event.target.value as SortKey)}
           aria-label="Sort caps"
+          className="min-h-11 rounded-full border-[1.5px] border-line bg-paper px-3.5 py-2 text-[13px]"
         >
           <option value="new">Newest</option>
           <option value="size">Size: small to large</option>
         </select>
       </div>
 
-      <div className="cap-grid">
+      <CapGrid>
         {shown.map((cap, index) => (
           <CapCard cap={cap} key={cap.id} priority={index < 4} />
         ))}
 
         {filtered.length === 0 ? (
-          <div className="empty">
+          <div className="col-span-full grid justify-items-center gap-4 py-14 text-center text-mut">
             <SearchX className="ic" aria-hidden="true" />
             <p>No caps match your filters.</p>
             <Button variant="line" onClick={resetFilters}>
@@ -207,18 +221,18 @@ function CatalogView({ caps, initialCategory }: CatalogViewProps) {
             </ButtonAnchor>
           </div>
         ) : null}
-      </div>
+      </CapGrid>
 
       {visible < filtered.length ? (
-        <div className="sec" style={{ textAlign: "center" }}>
+        <Section className="text-center">
           <Button
             variant="line"
             onClick={() => setVisible((current) => current + PAGE_SIZE)}
           >
             Load more caps
           </Button>
-        </div>
+        </Section>
       ) : null}
-    </div>
+    </Page>
   );
 }
