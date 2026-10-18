@@ -49,6 +49,15 @@ Every admin mutation executes `revalidatePath('/', 'layout')` — the moment the
 adds/edits/hides a cap, every public page freshens on the next request. Details:
 `docs/plans/001-foundation.md#caching-and-invalidation`.
 
+## Deploy
+
+Vercel. Env vars and the exact steps are listed in `docs/tasks/phase-4.md#deploy-steps-owner`.
+
+```bash
+pnpm dlx vercel link
+pnpm dlx vercel --prod
+```
+
 ## Documentation index
 
 - `docs/plans/PLAN.md` — business + UX plan from the flier (source of truth)

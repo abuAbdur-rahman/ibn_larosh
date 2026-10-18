@@ -58,10 +58,11 @@ interface PhotoFieldProps {
 function PhotoField({ capId, preview, onPick }: PhotoFieldProps) {
   return (
     <>
-      <label>
+      <label htmlFor="cap-photo">
         {capId ? "Add another photo (optional)" : "Cap photo"}
         <input
           className={fileInputClass}
+          id="cap-photo"
           name="image"
           type="file"
           accept="image/jpeg,image/png,image/webp"
@@ -129,10 +130,11 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
 
       {state.error ? <Note tone="alert">{state.error}</Note> : null}
 
-      <label>
+      <label htmlFor="cap-name">
         Cap name
         <input
           className={inputClass}
+          id="cap-name"
           name="name"
           defaultValue={values.name}
           maxLength={80}
@@ -142,9 +144,9 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
       </label>
 
       <div className={fieldRowClass}>
-        <label>
+        <label htmlFor="cap-category">
           Cap type
-          <select className={inputClass} name="category" defaultValue={values.category}>
+          <select className={inputClass} id="cap-category" name="category" defaultValue={values.category}>
             {CAP_CATEGORIES.map((category) => (
               <option key={category} value={category}>
                 {CATEGORIES[category].label}
@@ -152,10 +154,11 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
             ))}
           </select>
         </label>
-        <label>
+        <label htmlFor="cap-sizes">
           Sizes (inches)
           <input
             className={inputClass}
+            id="cap-sizes"
             name="sizes"
             defaultValue={values.sizes}
             placeholder="21.5, 22, 23"
@@ -165,19 +168,21 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
       </div>
 
       <div className={fieldRowClass}>
-        <label>
+        <label htmlFor="cap-colors">
           Colours
           <input
             className={inputClass}
+            id="cap-colors"
             name="colors"
             defaultValue={values.colors}
             placeholder="Blue, Gold, Silver"
           />
         </label>
-        <label>
+        <label htmlFor="cap-tags">
           Tags
           <input
             className={inputClass}
+            id="cap-tags"
             name="tags"
             defaultValue={values.tags}
             placeholder="geometric, woven"
@@ -186,10 +191,11 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
       </div>
 
       <div className={fieldRowClass}>
-        <label>
+        <label htmlFor="cap-price">
           Price (₦, optional)
           <input
             className={inputClass}
+            id="cap-price"
             name="price"
             type="number"
             min={0}
@@ -221,10 +227,11 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
         </div>
       </div>
 
-      <label>
+      <label htmlFor="cap-description">
         Description
         <textarea
           className={textareaClass}
+          id="cap-description"
           name="description"
           defaultValue={values.description}
           maxLength={600}

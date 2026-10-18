@@ -6,6 +6,7 @@ import { getCaps } from "@/lib/caps";
 export const revalidate = 300;
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/caps" },
   title: "Browse caps",
   description:
     "Browse quality Hausa caps — Tajia, kaftan caps, fancy weaves and custom designs. Filter by type and size, then order on WhatsApp.",

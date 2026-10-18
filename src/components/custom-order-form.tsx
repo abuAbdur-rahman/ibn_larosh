@@ -36,10 +36,11 @@ export function CustomOrderForm() {
         </Note>
       ) : null}
 
-      <label>
+      <label htmlFor="order-name">
         Your name
         <input
           className={inputClass}
+          id="order-name"
           name="name"
           placeholder="e.g. Abdullahi"
           autoComplete="name"
@@ -49,9 +50,9 @@ export function CustomOrderForm() {
       </label>
 
       <div className={fieldRowClass}>
-        <label>
+        <label htmlFor="order-type">
           Cap type
-          <select className={inputClass} name="type" defaultValue={CATEGORIES.tajia.label}>
+          <select className={inputClass} id="order-type" name="type" defaultValue={CATEGORIES.tajia.label}>
             {Object.values(CATEGORIES).map((category) => (
               <option key={category.label} value={category.label}>
                 {category.label}
@@ -59,10 +60,11 @@ export function CustomOrderForm() {
             ))}
           </select>
         </label>
-        <label>
+        <label htmlFor="order-size">
           Size (inches)
           <input
             className={inputClass}
+            id="order-size"
             name="size"
             inputMode="decimal"
             placeholder="e.g. 22"
@@ -75,10 +77,11 @@ export function CustomOrderForm() {
       </div>
 
       <div className={fieldRowClass}>
-        <label>
+        <label htmlFor="order-qty">
           Quantity
           <input
             className={inputClass}
+            id="order-qty"
             name="qty"
             type="number"
             min={1}
@@ -88,10 +91,11 @@ export function CustomOrderForm() {
             required
           />
         </label>
-        <label>
+        <label htmlFor="order-colors">
           Colours
           <input
             className={inputClass}
+            id="order-colors"
             name="colors"
             placeholder="e.g. Navy and gold"
             maxLength={120}
@@ -99,10 +103,11 @@ export function CustomOrderForm() {
         </label>
       </div>
 
-      <label>
+      <label htmlFor="order-notes">
         Design notes
         <textarea
           className={textareaClass}
+          id="order-notes"
           name="notes"
           maxLength={MAX_NOTES}
           placeholder="Describe the pattern. You can send a reference photo in the chat."
