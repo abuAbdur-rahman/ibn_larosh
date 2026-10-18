@@ -19,8 +19,19 @@ Status: polish done · deploy blocked on owner (Vercel auth)
       search (purple → 1 cap), detail size/colour selection → order bar updates, custom-form
       validation (empty name, half-inch size rule), FAQ accordion, login error, password
       show/hide.
+- [x] **Schema tests** (`src/lib/cap-schema.ts`): 10 cases — valid input, empty/one-letter name,
+      bad category, no sizes, out-of-range size, non-half-inch size, negative price, oversized
+      description, too many colours; all produce the intended messages.
+- [x] **Admin form markup** (session-authenticated fetch): dropzone copy, file input present with
+      `name="image"` and image MIME filter, hidden input, labelled fields.
 - [x] **Form a11y**: explicit `htmlFor`/`id` on every labelled control (login, custom order,
       cap form).
+- [x] **Image uploader**: drag-and-drop dropzone with click-to-browse, live preview, file
+      name/size, remove button, and client-side type/size checks — replaces the raw file input.
+      The real `<input type="file" name="image">` stays in the form so server actions are unchanged.
+- [x] **Zod validation** (`src/lib/cap-schema.ts`) for `/admin/caps/new` and edit: name, category,
+      sizes (18–26, half-inch, 1–12), colours/tags limits, price range, description length.
+      Product-facing messages; server action maps issues into the form error block.
 - [ ] **Vercel deploy** — requires the owner's Vercel login and env values (see below).
 
 ## Deploy steps (owner)
