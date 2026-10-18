@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { CapForm } from "@/components/admin/cap-form";
+import { AdminPageHeader } from "@/components/admin/page-header";
 import { createCapAction } from "../actions";
 
 export const metadata: Metadata = {
@@ -10,12 +11,7 @@ export const metadata: Metadata = {
 export default function NewCapPage() {
   return (
     <>
-      <div className="admin-toolbar">
-        <div>
-          <h1 className="admin-title">New cap</h1>
-          <p className="admin-sub">Upload a photo and fill in the details.</p>
-        </div>
-      </div>
+      <AdminPageHeader title="New cap" lead="Upload a photo and fill in the details." />
       <CapForm action={createCapAction} submitLabel="Save cap" />
     </>
   );

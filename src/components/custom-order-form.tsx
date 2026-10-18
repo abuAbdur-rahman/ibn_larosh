@@ -2,7 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { Button } from "./ui-kit/button";
-import { inputClass, textareaClass, fieldRowClass } from "./ui-kit/field";
+import { formClass, inputClass, textareaClass, fieldRowClass } from "./ui-kit/field";
 import { Note } from "./ui-kit/layout";
 import { WhatsAppIcon } from "./whatsapp-icon";
 import { CATEGORIES } from "@/lib/site";
@@ -25,7 +25,7 @@ export function CustomOrderForm() {
   }
 
   return (
-    <form className="site-form" onSubmit={handleSubmit} noValidate>
+    <form className={formClass} onSubmit={handleSubmit} noValidate>
       {errors.length > 0 ? (
         <Note tone="alert">
           <ul style={{ margin: 0, paddingLeft: 18 }}>

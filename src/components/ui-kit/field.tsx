@@ -10,6 +10,8 @@ export const inputClass =
 export const textareaClass = cn(inputClass, "min-h-24 resize-y py-3");
 export const fileInputClass = cn(inputClass, "h-auto py-2.5");
 export const fieldRowClass = "grid grid-cols-2 gap-3";
+export const formClass =
+  "grid gap-3.5 [&_label]:grid [&_label]:gap-1.5 [&_label]:text-[13px] [&_label]:font-semibold";
 
 interface PanelProps extends ComponentProps<"div"> {
   children: ReactNode;

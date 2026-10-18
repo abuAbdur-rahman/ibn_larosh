@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { eq } from "drizzle-orm";
 import { CapForm } from "@/components/admin/cap-form";
+import { AdminPageHeader } from "@/components/admin/page-header";
 import { getDb } from "@/lib/db";
 import { caps as capsTable } from "@/lib/db/schema";
 import { rowToCap } from "@/lib/caps";
@@ -34,12 +35,7 @@ export default async function EditCapPage({ params }: EditCapPageProps) {
 
   return (
     <>
-      <div className="admin-toolbar">
-        <div>
-          <h1 className="admin-title">Edit cap</h1>
-          <p className="admin-sub">{cap.name}</p>
-        </div>
-      </div>
+      <AdminPageHeader title="Edit cap" lead={cap.name} />
       <CapForm
         action={updateCapAction}
         submitLabel="Save changes"

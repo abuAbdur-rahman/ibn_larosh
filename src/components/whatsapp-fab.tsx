@@ -15,11 +15,11 @@ export function WhatsAppFab() {
 
   return (
     <a
-      className="fab"
       href={CHAT_LINK}
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat on WhatsApp"
+      className="fab fixed right-4 bottom-[calc(var(--tab)+var(--safe)+16px)] z-[58] grid size-13 place-items-center rounded-full bg-wa-solid text-white shadow-[0_8px_22px_rgba(10,59,34,0.28)] transition-transform hover:scale-105 min-[900px]:right-6 min-[900px]:bottom-6"
     >
       <WhatsAppIcon className="ic wa" />
     </a>

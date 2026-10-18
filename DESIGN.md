@@ -28,6 +28,9 @@ woven patterns. Assets: `public/brand/logo.png` (header mark), `public/brand/emb
 
 Tailwind v4: define these in `@theme` inside `src/app/globals.css`
 (`--color-g9`, `--color-gold`, `--color-cream` … software decides names; tokens above are the values).
+Components are styled with Tailwind utilities; `globals.css` holds tokens, base styles,
+keyframes, and the few rules utilities cannot express (focus ring, admin chrome hiding,
+reduced motion).
 
 ## Typography
 

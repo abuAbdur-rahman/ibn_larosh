@@ -27,8 +27,20 @@ interface TabProps {
 
 function Tab({ href, label, active, children }: TabProps) {
   return (
-    <Link href={href} aria-current={active ? "page" : undefined}>
-      <span className="pill">{children}</span>
+    <Link
+      href={href}
+      aria-current={active ? "page" : undefined}
+      className={`flex flex-col items-center justify-center gap-0.5 text-[11px] font-semibold ${
+        active ? "text-g9" : "text-mut"
+      }`}
+    >
+      <span
+        className={`grid h-7 w-12 place-items-center rounded-[14px] transition-colors ${
+          active ? "bg-g9 text-white" : ""
+        }`}
+      >
+        {children}
+      </span>
       {label}
     </Link>
   );
@@ -39,7 +51,10 @@ export function TabBar() {
   const active = resolveTab(usePathname());
 
   return (
-    <nav className="tabbar" aria-label="Main">
+    <nav
+      className="tabbar fixed inset-x-0 bottom-0 z-60 grid h-[calc(var(--tab)+var(--safe))] grid-cols-5 border-t border-line bg-paper pb-[var(--safe)] min-[900px]:hidden"
+      aria-label="Main"
+    >
       <Tab href="/" label="Home" active={active === "home"}>
         <House className="ic" />
       </Tab>
@@ -47,13 +62,13 @@ export function TabBar() {
         <LayoutGrid className="ic" />
       </Tab>
       <a
-        className="chat"
         href={CHAT_LINK}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"
+        className="flex flex-col items-center justify-center gap-0.5 text-[11px] font-semibold text-mut"
       >
-        <span className="pill">
+        <span className="grid h-[34px] w-13 place-items-center rounded-[17px] bg-wa-solid text-white shadow-[0_4px_12px_rgba(37,211,102,0.4)]">
           <WhatsAppIcon className="ic wa" />
         </span>
         Chat
