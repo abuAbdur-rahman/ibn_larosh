@@ -4,6 +4,7 @@ import { useActionState, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
 import { Button } from "@/components/ui-kit/button";
 import { inputClass } from "@/components/ui-kit/field";
+import { Note } from "@/components/ui-kit/layout";
 import { loginAction } from "./actions";
 
 const initialState: { error?: string } = {};
@@ -14,11 +15,7 @@ export function LoginForm() {
 
   return (
     <form className="site-form" action={action}>
-      {state.error ? (
-        <div className="note" role="alert">
-          {state.error}
-        </div>
-      ) : null}
+      {state.error ? <Note tone="alert">{state.error}</Note> : null}
 
       <label>
         Username

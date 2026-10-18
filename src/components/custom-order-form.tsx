@@ -3,6 +3,7 @@
 import { useState, type FormEvent } from "react";
 import { Button } from "./ui-kit/button";
 import { inputClass, textareaClass, fieldRowClass } from "./ui-kit/field";
+import { Note } from "./ui-kit/layout";
 import { WhatsAppIcon } from "./whatsapp-icon";
 import { CATEGORIES } from "@/lib/site";
 import { buildCustomOrder, MAX_NOTES } from "@/lib/custom-order";
@@ -26,13 +27,13 @@ export function CustomOrderForm() {
   return (
     <form className="site-form" onSubmit={handleSubmit} noValidate>
       {errors.length > 0 ? (
-        <div className="note" role="alert">
+        <Note tone="alert">
           <ul style={{ margin: 0, paddingLeft: 18 }}>
             {errors.map((problem) => (
               <li key={problem}>{problem}</li>
             ))}
           </ul>
-        </div>
+        </Note>
       ) : null}
 
       <label>

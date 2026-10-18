@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useActionState, useEffect, useState, type ChangeEvent } from "react";
 import { Button, ButtonLink } from "@/components/ui-kit/button";
 import { fileInputClass, inputClass, textareaClass, fieldRowClass } from "@/components/ui-kit/field";
+import { Note } from "@/components/ui-kit/layout";
 import type { ActionState } from "@/lib/admin-types";
 import { CAP_CATEGORIES } from "@/lib/cap-input";
 import { CATEGORIES } from "@/lib/site";
@@ -116,11 +117,7 @@ export function CapForm({ action, submitLabel, capId, initial, images = [] }: Ca
     <form className="site-form admin-form" action={formAction}>
       {capId ? <input type="hidden" name="id" value={capId} /> : null}
 
-      {state.error ? (
-        <div className="note" role="alert">
-          {state.error}
-        </div>
-      ) : null}
+      {state.error ? <Note tone="alert">{state.error}</Note> : null}
 
       <label>
         Cap name

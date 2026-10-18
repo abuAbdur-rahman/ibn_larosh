@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CustomOrderForm } from "@/components/custom-order-form";
 import { Panel } from "@/components/ui-kit/field";
+import { Note, Page, PageTitle, Section } from "@/components/ui-kit/layout";
 
 export const metadata: Metadata = {
   title: "Custom order",
@@ -10,24 +11,19 @@ export const metadata: Metadata = {
 
 export default function CustomPage() {
   return (
-    <div className="page">
-      <div className="ttl">
-        <h1>Custom order</h1>
-        <p>
-          We weave any cap design of your choice. Fill this in and we&apos;ll continue on
-          WhatsApp.
-        </p>
-      </div>
+    <Page>
+      <PageTitle
+        title="Custom order"
+        lead="We weave any cap design of your choice. Fill this in and we'll continue on WhatsApp."
+      />
 
       <Panel>
         <CustomOrderForm />
       </Panel>
 
-      <section className="sec">
-        <div className="note">
-          Tip: after WhatsApp opens, attach a photo of the design you want.
-        </div>
-      </section>
-    </div>
+      <Section>
+        <Note>Tip: after WhatsApp opens, attach a photo of the design you want.</Note>
+      </Section>
+    </Page>
   );
 }
