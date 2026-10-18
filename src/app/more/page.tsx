@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  ChevronRight,
-  CircleHelp,
-  Info,
-  Phone,
-  Ruler,
-  Truck,
-} from "lucide-react";
+import { ChevronRight, CircleHelp, Info, Phone, Ruler, Truck } from "lucide-react";
+import { Page, PageTitle } from "@/components/ui-kit/layout";
 
 export const metadata: Metadata = {
   title: "More",
@@ -24,24 +18,26 @@ const ITEMS = [
 
 export default function MorePage() {
   return (
-    <div className="page">
-      <div className="ttl">
-        <h1>More</h1>
-      </div>
+    <Page>
+      <PageTitle title="More" />
 
-      <div className="menu">
+      <nav className="grid gap-3" aria-label="More pages">
         {ITEMS.map((item) => (
-          <Link href={item.href} key={item.href}>
-            <span className="bub">
+          <Link
+            key={item.href}
+            href={item.href}
+            className="flex items-center gap-4 rounded-[16px] border border-line bg-paper px-4.5 py-4.25 font-semibold transition-colors hover:bg-[#FAF6E8]"
+          >
+            <span className="grid size-[38px] flex-none place-items-center rounded-[11px] bg-g9 text-gold-l">
               <item.icon className="ic" aria-hidden="true" />
             </span>
             {item.label}
-            <span className="go">
+            <span className="ml-auto text-mut">
               <ChevronRight className="ic" aria-hidden="true" />
             </span>
           </Link>
         ))}
-      </div>
-    </div>
+      </nav>
+    </Page>
   );
 }

@@ -86,3 +86,37 @@ export function Banner({ title, children, action, eyebrow }: BannerProps) {
     </div>
   );
 }
+
+interface LocationCardProps {
+  icon: ReactNode;
+  title: string;
+  detail?: string;
+  href?: string;
+  className?: string;
+}
+
+const LOCATION_CARD =
+  "flex items-center gap-3.5 rounded-[14px] border border-line bg-paper px-4.5 py-4 [&_.ic]:text-gold";
+
+/** Shop / stock-location row. Renders as a link when `href` is provided. */
+export function LocationCard({ icon, title, detail, href, className }: LocationCardProps) {
+  const body = (
+    <>
+      {icon}
+      <div>
+        <b className="block">{title}</b>
+        {detail ? <span className="text-[12.5px] text-mut">{detail}</span> : null}
+      </div>
+    </>
+  );
+
+  if (href) {
+    return (
+      <a className={cn(LOCATION_CARD, className)} href={href} target="_blank" rel="noopener noreferrer">
+        {body}
+      </a>
+    );
+  }
+
+  return <div className={cn(LOCATION_CARD, className)}>{body}</div>;
+}

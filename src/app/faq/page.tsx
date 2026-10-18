@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { ChevronDown } from "lucide-react";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { ButtonAnchor } from "@/components/ui-kit/button";
+import { Page, PageTitle, Section } from "@/components/ui-kit/layout";
 import { askLink } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
@@ -39,23 +40,29 @@ const QUESTIONS = [
 
 export default function FaqPage() {
   return (
-    <div className="page">
-      <div className="ttl">
-        <h1>FAQ</h1>
-        <p>Quick answers.</p>
+    <Page>
+      <PageTitle title="FAQ" lead="Quick answers." />
+
+      <div className="space-y-2.5">
+        {QUESTIONS.map((item, index) => (
+          <details
+            key={item.q}
+            open={index === 0}
+            className="group rounded-[14px] border border-line bg-paper px-4"
+          >
+            <summary className="flex cursor-pointer list-none items-center justify-between gap-3 py-3.75 font-semibold [&::-webkit-details-marker]:hidden">
+              {item.q}
+              <ChevronDown
+                className="ic text-mut transition-transform duration-200 group-open:rotate-180"
+                aria-hidden="true"
+              />
+            </summary>
+            <p className="max-w-[68ch] pb-3.75 text-mut">{item.a}</p>
+          </details>
+        ))}
       </div>
 
-      {QUESTIONS.map((item, index) => (
-        <details key={item.q} open={index === 0}>
-          <summary>
-            {item.q}
-            <ChevronDown className="ic" aria-hidden="true" />
-          </summary>
-          <p>{item.a}</p>
-        </details>
-      ))}
-
-      <section className="sec">
+      <Section>
         <ButtonAnchor
           variant="wa"
           block
@@ -65,7 +72,7 @@ export default function FaqPage() {
         >
           <WhatsAppIcon className="ic wa" /> Still have a question?
         </ButtonAnchor>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 }

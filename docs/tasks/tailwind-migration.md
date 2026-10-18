@@ -48,13 +48,27 @@ New layout primitives in `src/components/ui-kit/layout.tsx`:
 CSS is now 1,533 lines (from 1,542). `.page`, `.ttl`, `.sec`, `.banner` remain until their last
 consumer is migrated (home / delivery / detail still use them).
 
-## Stage 3 — info routes (next)
+## Stage 3 — info routes (done)
 
-`/delivery` → `/faq` → `/about` → `/contact` → `/more`, then catalog and detail.
+Migrated: `/delivery`, `/faq`, `/about`, `/contact`, `/more`.
 
-Selectors to migrate: `.loc`, `.locr`, `.fact`, `.facts`, `.sizes`, `.details`/`summary`,
-`.menu`, `.hscroll`, `.cap-grid`, `.card*`, `.hero`, `.slider`, `.perks`, `.cat`, `.dgrid`,
-`.big`, `.dinfo`, `.blk*`, `.obar`, plus admin chrome.
+- New `LocationCard` primitive (icon + title + detail, optional link) — shared by delivery and
+  contact, ready for home in stage 5.
+- FAQ `<details>/<summary>` converted to utilities: marker hidden, `group-open:rotate-180` on the
+  chevron, 68ch answer measure.
+- More menu and contact stack converted to utilities.
+- About logo sizing/radius moved onto `next/image` (`w-[min(320px,80%)] rounded-[16px]`).
+- Deleted: `.stack`, `.menu*`, `details`/`summary*`, `.logo-full`.
+- Radius trap caught twice more: `rounded-2xl` = 18px and `rounded-3xl` = 22px here, not the
+  intended 16/24px. Explicit values used (`rounded-[16px]`, `rounded-[24px]`).
+
+CSS now 1,460 lines (from 1,533). `.loc`/`.locr` remain for home until stage 5.
+
+## Stage 4 — catalog + detail (next)
+
+`/caps` and `/caps/[id]`: `.fbar`, `.search`, `.meta`, `.empty`, `.hscroll`, `.cap-grid`,
+`.card`, `.ph`, `.tag`, `.cb`, `.crow`, `.hcard`, `.dgrid`, `.big`, `.dinfo`, `.blk*`,
+`.sizes`, `.facts`, `.obar`, `.back`.
 
 ## Stays in CSS
 
