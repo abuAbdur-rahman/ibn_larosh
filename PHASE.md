@@ -38,4 +38,5 @@ prototype `docs/reference/prototype.html` · visual spec `DESIGN.md`.
 | 2026-10-18 | 2 | `517e831` | Neon + Drizzle: `caps` table pushed, 10 caps seeded (`pnpm db:seed`), catalog reads DB via `src/lib/caps.ts` with seed fallback, static ISR 300s, `/caps?cat=` moved client-side |
 | 2026-10-18 | 3 | `8a7dc99` | admin portal: env login + HMAC session, `proxy.ts` guard, R2 uploads (magic-byte + 5 MB), cap CRUD, toggles, delete with confirm, `revalidatePath` invalidation, password toggle |
 | 2026-10-18 | — (styles) | `7d02dc8` | CSS→Tailwind stage 1: Button/Chip/Input/Panel/SectionHead/Steps primitives; ~180 lines removed from globals.css; browser-verified parity |
-| 2026-10-18 | — (styles) | (this commit) | CSS→Tailwind stage 2: Page/PageTitle/Section/Note/Banner primitives, `/custom` + `/sizes` rewritten, note tokens, table CSS deleted |
+| 2026-10-18 | — (styles) | `5d6b7e0` | CSS→Tailwind stage 2: Page/PageTitle/Section/Note/Banner primitives, `/custom` + `/sizes` rewritten, note tokens, table CSS deleted |
+| 2026-10-18 | — (styles) | (this commit) | CSS→Tailwind stage 3: delivery/faq/about/contact/more rewritten, `LocationCard` primitive, details/summary + menu + logo CSS deleted |

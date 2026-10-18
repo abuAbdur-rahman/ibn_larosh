@@ -3,6 +3,7 @@ import Image from "next/image";
 import { BadgeCheck, Package, Ruler, Wallet } from "lucide-react";
 import { SectionHead } from "@/components/section-head";
 import { Panel } from "@/components/ui-kit/field";
+import { Page, PageTitle, Section } from "@/components/ui-kit/layout";
 import { SITE } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -20,14 +21,12 @@ const VALUES = [
 
 export default function AboutPage() {
   return (
-    <div className="page">
-      <div className="ttl">
-        <h1>About us</h1>
-      </div>
+    <Page>
+      <PageTitle title="About us" />
 
       <Panel className="text-center">
         <Image
-          className="logo-full"
+          className="mx-auto h-auto w-[min(320px,80%)] rounded-[16px]"
           src="/brand/logo.png"
           alt={`${SITE.name} — ${SITE.tagline}`}
           width={1536}
@@ -36,8 +35,8 @@ export default function AboutPage() {
         />
       </Panel>
 
-      <section className="sec">
-        <Panel className="stack">
+      <Section>
+        <Panel className="grid gap-4">
           <p className="max-w-[68ch]">
             <b>{SITE.name}</b> sells all kinds of quality and fancy Hausa caps, including
             Tajia and caps to match your kaftan. We weave any design of your choice and take
@@ -45,11 +44,11 @@ export default function AboutPage() {
           </p>
           <p className="text-[13px] text-mut">BN No. {SITE.bnNo}</p>
         </Panel>
-      </section>
+      </Section>
 
-      <section className="sec">
+      <Section>
         <SectionHead title="What you get" />
-        <div className="cap-grid">
+        <div className="grid grid-cols-2 gap-4 min-[900px]:grid-cols-4 min-[900px]:gap-6">
           {VALUES.map((value) => (
             <Panel key={value.label}>
               <value.icon className="ic text-gold" aria-hidden="true" />
@@ -59,7 +58,7 @@ export default function AboutPage() {
             </Panel>
           ))}
         </div>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 }

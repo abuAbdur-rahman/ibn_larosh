@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { MapPin, Truck } from "lucide-react";
 import { SectionHead } from "@/components/section-head";
 import { Steps } from "@/components/steps";
+import { Banner, LocationCard, Page, PageTitle, Section } from "@/components/ui-kit/layout";
 import { SITE } from "@/lib/site";
 import { DELIVERY_STEPS } from "@/lib/steps";
 
@@ -13,38 +14,34 @@ export const metadata: Metadata = {
 
 export default function DeliveryPage() {
   return (
-    <div className="page">
-      <div className="ttl">
-        <h1>Delivery</h1>
-        <p>Fast and simple, right to your door.</p>
-      </div>
+    <Page>
+      <PageTitle title="Delivery" lead="Fast and simple, right to your door." />
 
-      <div className="banner">
-        <span className="eye">
-          <Truck className="ic" aria-hidden="true" /> Ilorin only
-        </span>
-        <h2>We deliver within Ilorin</h2>
-        <p>
-          Order on WhatsApp and we&apos;ll arrange delivery to you in Ilorin. You can also
-          visit the shop.
-        </p>
-      </div>
+      <Banner
+        title="We deliver within Ilorin"
+        eyebrow={
+          <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.2em] text-gold-l [&_.ic]:size-3.5">
+            <Truck className="ic" aria-hidden="true" /> Ilorin only
+          </span>
+        }
+      >
+        Order on WhatsApp and we&apos;ll arrange delivery to you in Ilorin. You can also visit
+        the shop.
+      </Banner>
 
-      <section className="sec">
+      <Section>
         <SectionHead title="How it works" />
         <Steps steps={DELIVERY_STEPS} />
-      </section>
+      </Section>
 
-      <section className="sec">
+      <Section>
         <SectionHead title="Visit the shop" />
-        <div className="locr">
-          <MapPin className="ic" aria-hidden="true" />
-          <div>
-            <b>{SITE.name}</b>
-            <span>{SITE.address}</span>
-          </div>
-        </div>
-      </section>
-    </div>
+        <LocationCard
+          icon={<MapPin className="ic" aria-hidden="true" />}
+          title={SITE.name}
+          detail={SITE.address}
+        />
+      </Section>
+    </Page>
   );
 }

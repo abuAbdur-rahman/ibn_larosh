@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { MapPin, Phone } from "lucide-react";
 import { SectionHead } from "@/components/section-head";
 import { ButtonAnchor } from "@/components/ui-kit/button";
+import { LocationCard, Page, PageTitle, Section } from "@/components/ui-kit/layout";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
 import { SITE } from "@/lib/site";
 import { wa } from "@/lib/whatsapp";
@@ -18,13 +19,10 @@ const MAP_LINK = `https://www.google.com/maps/search/?api=1&query=${encodeURICom
 
 export default function ContactPage() {
   return (
-    <div className="page">
-      <div className="ttl">
-        <h1>Contact</h1>
-        <p>Call or message us any time.</p>
-      </div>
+    <Page>
+      <PageTitle title="Contact" lead="Call or message us any time." />
 
-      <div className="stack">
+      <div className="grid gap-4">
         <ButtonAnchor
           variant="wa"
           block
@@ -37,28 +35,26 @@ export default function ContactPage() {
         <ButtonAnchor variant="line" block href={`tel:+${SITE.phoneIntl}`}>
           <Phone className="ic" aria-hidden="true" /> Call {SITE.phoneDisplay}
         </ButtonAnchor>
-        <a className="locr" href={MAP_LINK} target="_blank" rel="noopener noreferrer">
-          <MapPin className="ic" aria-hidden="true" />
-          <div>
-            <b>Shop address</b>
-            <span>{SITE.address}</span>
-          </div>
-        </a>
+        <LocationCard
+          href={MAP_LINK}
+          icon={<MapPin className="ic" aria-hidden="true" />}
+          title="Shop address"
+          detail={SITE.address}
+        />
       </div>
 
-      <section className="sec">
+      <Section>
         <SectionHead title="Also available in" />
-        <div className="loc">
+        <div className="grid gap-3 min-[900px]:grid-cols-2">
           {SITE.otherLocations.map((location) => (
-            <div className="locr" key={location}>
-              <MapPin className="ic" aria-hidden="true" />
-              <div>
-                <b>{location}</b>
-              </div>
-            </div>
+            <LocationCard
+              key={location}
+              icon={<MapPin className="ic" aria-hidden="true" />}
+              title={location}
+            />
           ))}
         </div>
-      </section>
-    </div>
+      </Section>
+    </Page>
   );
 }
