@@ -2,6 +2,8 @@
 
 import { useActionState, useState } from "react";
 import { Eye, EyeOff } from "lucide-react";
+import { Button } from "@/components/ui-kit/button";
+import { inputClass } from "@/components/ui-kit/field";
 import { loginAction } from "./actions";
 
 const initialState: { error?: string } = {};
@@ -21,7 +23,7 @@ export function LoginForm() {
       <label>
         Username
         <input
-          className="input"
+          className={inputClass}
           name="username"
           autoComplete="username"
           spellCheck={false}
@@ -33,7 +35,7 @@ export function LoginForm() {
         Password
         <span className="password-field">
           <input
-            className="input"
+            className={inputClass}
             name="password"
             type={showPassword ? "text" : "password"}
             autoComplete="current-password"
@@ -55,9 +57,9 @@ export function LoginForm() {
         </span>
       </label>
 
-      <button className="btn green block" type="submit" disabled={pending}>
+      <Button variant="green" block type="submit" disabled={pending}>
         {pending ? "Signing in…" : "Sign in"}
-      </button>
+      </Button>
     </form>
   );
 }

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ChevronDown } from "lucide-react";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
+import { ButtonAnchor } from "@/components/ui-kit/button";
 import { askLink } from "@/lib/whatsapp";
 
 export const metadata: Metadata = {
@@ -55,14 +56,15 @@ export default function FaqPage() {
       ))}
 
       <section className="sec">
-        <a
-          className="btn wa block"
+        <ButtonAnchor
+          variant="wa"
+          block
           href={askLink()}
           target="_blank"
           rel="noopener noreferrer"
         >
           <WhatsAppIcon className="ic wa" /> Still have a question?
-        </a>
+        </ButtonAnchor>
       </section>
     </div>
   );

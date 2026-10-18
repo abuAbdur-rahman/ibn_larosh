@@ -412,31 +412,6 @@
   .sec {
     padding: clamp(40px, 5vw, 56px) 0 0;
   }
-  .sh {
-    display: flex;
-    align-items: end;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 18px;
-  }
-  .sh h2 {
-    font-size: clamp(23px, 2.6vw, 28px);
-    color: var(--g9);
-  }
-  .sh a {
-    font-size: 13px;
-    font-weight: 600;
-    color: var(--g7);
-    display: inline-flex;
-    align-items: center;
-    gap: 2px;
-    min-height: 44px;
-    padding-left: 8px;
-  }
-  .sh a .ic {
-    width: 16px;
-    height: 16px;
-  }
   .hscroll {
     display: flex;
     gap: 10px;
@@ -452,59 +427,6 @@
   .hscroll > * {
     scroll-snap-align: start;
     flex: none;
-  }
-
-  /* ---------- buttons ---------- */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    min-height: 48px;
-    padding: 0 22px;
-    border-radius: 999px;
-    font-weight: 600;
-    font-size: 15px;
-    transition: 150ms;
-  }
-  .btn:active {
-    transform: scale(0.97);
-  }
-  .btn.gold {
-    background: var(--gold);
-    color: var(--g9);
-  }
-  .btn.gold:hover {
-    background: #b8872a;
-  }
-  .btn.green {
-    background: var(--g9);
-    color: #fff;
-  }
-  .btn.green:hover {
-    background: #0d4a2b;
-  }
-  .btn.wa {
-    background: var(--wa-solid);
-    color: #fff;
-  }
-  .btn.wa:hover {
-    background: var(--wa-solid-hover);
-  }
-  /* Keep the glyph optically equal to the 15px label. */
-  .btn .ic.wa {
-    width: 20px;
-    height: 20px;
-  }
-  .btn.line {
-    border: 1.5px solid var(--g9);
-    color: var(--g9);
-  }
-  .btn.line:hover {
-    background: rgba(10, 59, 34, 0.06);
-  }
-  .btn.block {
-    width: 100%;
   }
 
   /* ---------- hero ---------- */
@@ -792,40 +714,6 @@
     width: 156px;
   }
 
-  /* ---------- steps ---------- */
-  .steps {
-    display: grid;
-    gap: 14px;
-  }
-  .step {
-    display: flex;
-    gap: 18px;
-    align-items: center;
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: var(--r);
-    padding: 20px;
-  }
-  .step .n {
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    background: var(--gold);
-    color: var(--g9);
-    font-weight: 700;
-    display: grid;
-    place-items: center;
-    flex: none;
-  }
-  .step b {
-    display: block;
-    color: var(--g9);
-  }
-  .step span {
-    font-size: 13px;
-    color: var(--mut);
-  }
-
   /* ---------- banner ---------- */
   .banner {
     background: var(--g9);
@@ -928,25 +816,6 @@
   }
   .chips::-webkit-scrollbar {
     display: none;
-  }
-  .chip {
-    flex: none;
-    height: 44px;
-    padding: 0 16px;
-    border-radius: 999px;
-    background: var(--paper);
-    border: 1.5px solid var(--line);
-    font-size: 13.5px;
-    font-weight: 600;
-    color: var(--ink);
-    display: inline-flex;
-    align-items: center;
-  }
-  button.chip[aria-pressed="true"],
-  .chip.on {
-    background: var(--g9);
-    border-color: var(--g9);
-    color: #fff;
   }
   .lab {
     font-size: 11px;
@@ -1057,12 +926,6 @@
     flex-wrap: wrap;
     gap: 10px;
   }
-  .sizes .chip {
-    height: 44px;
-    min-width: 58px;
-    justify-content: center;
-    font-size: 15px;
-  }
   .facts {
     display: grid;
     gap: 12px;
@@ -1105,16 +968,6 @@
   }
 
   /* ---------- info pages ---------- */
-  .panel {
-    background: var(--paper);
-    border: 1px solid var(--line);
-    border-radius: var(--r);
-    padding: clamp(18px, 2.5vw, 24px);
-    box-shadow: var(--shadow);
-  }
-  .panel p {
-    max-width: 68ch;
-  }
   .stack {
     display: grid;
     gap: 16px;
@@ -1208,29 +1061,6 @@
     gap: 6px;
     font-size: 13px;
     font-weight: 600;
-  }
-  .input {
-    width: 100%;
-    min-height: 48px;
-    padding: 0 14px;
-    background: #fff;
-    border: 1.5px solid var(--line);
-    border-radius: 14px;
-    outline: 0;
-  }
-  textarea.input {
-    padding: 12px 14px;
-    min-height: 96px;
-    resize: vertical;
-  }
-  .input:focus {
-    border-color: var(--g7);
-    box-shadow: 0 0 0 3px rgba(18, 104, 58, 0.18);
-  }
-  .field-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 12px;
   }
   .note {
     background: #fff4cc;
@@ -1591,10 +1421,6 @@
     font-weight: 500;
     color: var(--mut);
   }
-  .admin-file {
-    padding: 10px 14px;
-    height: auto;
-  }
   .admin-preview {
     width: 160px;
     height: 160px;
@@ -1684,10 +1510,6 @@
     background: none;
     border: 0;
     padding: 20px 0 0;
-  }
-  .steps {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 18px;
   }
   .loc {
     grid-template-columns: repeat(2, 1fr);
