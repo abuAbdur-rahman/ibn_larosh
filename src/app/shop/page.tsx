@@ -14,12 +14,16 @@ export const metadata: Metadata = {
   alternates: { canonical: "/shop" },
 };
 
+const MAX_QUERY_LENGTH = 80;
+
 type ShopParams = Promise<{ collection?: string | string[]; q?: string | string[] }>;
 
 export default async function ShopPage({ searchParams }: { searchParams: ShopParams }) {
   const params = await searchParams;
   const selected = COLLECTIONS.find((collection) => collection.id === params.collection);
-  const query = typeof params.q === "string" ? params.q.trim().slice(0, 80) : "";
+  const query = typeof params.q === "string"
+    ? params.q.trim().slice(0, MAX_QUERY_LENGTH).toWellFormed()
+    : "";
   const results = findCollections(selected, query);
   const filters = [{ id: undefined, shortName: "All" }, ...COLLECTIONS];
 
@@ -30,20 +34,20 @@ export default async function ShopPage({ searchParams }: { searchParams: ShopPar
         lead="Find what you’re looking for, then ask us about availability and prices on WhatsApp."
       />
 
-      <div className="grid gap-3 rounded-[22px] border border-line bg-paper p-3.5 sm:p-5">
-        <Form action="/shop" className="flex gap-2" role="search" aria-label="Shop collections">
+      <div className="grid grid-cols-1 gap-3 rounded-[22px] border border-line bg-paper p-3.5 sm:p-5">
+        <Form action="/shop" className="grid grid-cols-[minmax(0,1fr)_auto] gap-2" role="search" aria-label="Shop collections">
           {selected && <input type="hidden" name="collection" value={selected.id} />}
-          <label className="flex min-w-0 flex-1 items-center gap-2 rounded-full border border-line bg-white px-3.5 focus-within:border-g7">
+          <label className="flex min-w-0 items-center gap-2 rounded-full border border-line bg-white px-3.5 focus-within:border-g7 focus-within:ring-2 focus-within:ring-g7/30">
             <Search className="size-5 shrink-0 text-mut" aria-hidden="true" />
             <span className="sr-only">Search the collections</span>
             <input
               key={query}
               name="q"
               type="search"
-              maxLength={80}
+              maxLength={MAX_QUERY_LENGTH}
               defaultValue={query}
-              placeholder="Try Tajia, attar or prayer mat"
-              className="min-w-0 flex-1 bg-transparent text-base focus-visible:outline-none focus-visible:shadow-none"
+              placeholder="Search products"
+              className="w-full min-w-0 bg-transparent text-base focus-visible:outline-none focus-visible:shadow-none"
             />
           </label>
           <Button type="submit" className="shrink-0 px-4 sm:px-6">Search</Button>
@@ -70,8 +74,8 @@ export default async function ShopPage({ searchParams }: { searchParams: ShopPar
 
       {query && (
         <div className="mt-5 flex flex-wrap items-center justify-between gap-x-3 text-mut">
-          <p role="status">
-            {results.length ? "Showing results for" : "No matches for"} <strong className="text-g9 [overflow-wrap:anywhere]">“{query}”</strong>
+          <p role="status" className="min-w-0 [overflow-wrap:anywhere]">
+            {results.length ? "Showing results for" : "No matches for"} <strong className="text-g9">“{query}”</strong>
           </p>
           <Link href={shopHref(selected?.id)} className="inline-flex min-h-11 items-center font-semibold text-g9 underline underline-offset-4">
             Clear search
