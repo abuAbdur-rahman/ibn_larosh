@@ -97,12 +97,13 @@ function normalize(text: string) {
     .replace(/\p{M}/gu, "")
     .toLowerCase()
     .replace(/['’]/g, "")
-    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
     .trim();
 }
 
 export function findCollections(collection: Collection | undefined, query: string) {
   const words = normalize(query).split(" ").filter(Boolean);
+  if (query && words.length === 0) return [];
 
   return (collection ? [collection] : COLLECTIONS)
     .map((group) => ({
