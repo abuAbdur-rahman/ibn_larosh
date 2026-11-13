@@ -14,6 +14,7 @@ export const orderLink = (cap: Cap, size?: number, color?: string) =>
       size ? `Size: ${size}` : null,
       color ? `Colour: ${color}` : null,
       `Ref: ${cap.id}`,
+      "Delivery location (town and state) or Ilorin pickup:",
     ]
       .filter(Boolean)
       .join("\n")

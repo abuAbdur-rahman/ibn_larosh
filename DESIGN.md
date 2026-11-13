@@ -74,9 +74,10 @@ Colors/adjectives align with `CATS` copy from prototype (Tajia/Kaftan caps/Fancy
 
 ## WhatsApp ordering (the core interaction)
 
-Pre-filled message, per prototype: greeting → cap name → size (if chosen) → ref id.
-Deep link `wa.me/2348109080076` via `src/lib/whatsapp.ts`; message ends with
-`Delivery: Ilorin` (same content as prototype.html). Floating WhatsApp button on all pages.
+Cap order messages prefill the greeting, cap name, selected size and colour, and reference ID.
+The final line asks shoppers to enter their town and state for nationwide delivery or specify pickup in Ilorin.
+This delivery policy follows the owner’s updated flyer. Links use `wa.me/2348109080076`
+via `src/lib/whatsapp.ts`. Mobile shoppers can open WhatsApp from the bottom tab bar.
 No cart, no payment, no backend order store. **Never** build one without owner sign-off.
 
 ## Motion & accessibility
