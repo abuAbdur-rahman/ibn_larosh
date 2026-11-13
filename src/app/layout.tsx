@@ -22,6 +22,9 @@ const inter = Inter({
 });
 
 const siteUrl = getSiteUrl();
+const storeTitle = "IBN Larosh Enterprises — Modest Wear, Fragrances & Islamic Essentials";
+const storeDescription =
+  "Shop Hausa caps, modest wear, attars, Islamic books and essentials. Based in Ilorin, with delivery across Nigeria. Order on WhatsApp.";
 
 export const viewport: Viewport = {
   themeColor: "#0A3B22",
@@ -31,32 +34,29 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "IBN Larosh Enterprises — Quality Hausa Caps",
+    default: storeTitle,
     template: "%s · IBN Larosh Enterprises",
   },
-  description:
-    "Quality and fancy Hausa caps in every size, colour and design. Tajia, kaftan caps, custom weaving. Order directly on WhatsApp. Ilorin, Kwara State.",
+  description: storeDescription,
   applicationName: "IBN Larosh Enterprises",
   openGraph: {
     siteName: "IBN Larosh Enterprises",
     locale: "en_NG",
     type: "website",
-    description:
-      "Quality and fancy Hausa caps in every size, colour and design. Order directly on WhatsApp. Ilorin, Kwara State.",
+    description: storeDescription,
     images: [
       {
         url: "/og.png",
         width: 1200,
         height: 630,
-        alt: "IBN Larosh Enterprises — quality and fancy Hausa caps",
+        alt: "IBN Larosh Enterprises storefront",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "IBN Larosh Enterprises — Quality Hausa Caps",
-    description:
-      "Quality and fancy Hausa caps in every size, colour and design. Order directly on WhatsApp.",
+    title: storeTitle,
+    description: storeDescription,
     images: ["/og.png"],
   },
 };

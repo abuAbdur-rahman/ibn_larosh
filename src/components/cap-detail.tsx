@@ -107,7 +107,7 @@ export function CapDetail({ cap, more }: CapDetailProps) {
 
           <div className="mt-7 grid gap-3">
             <div className={FACT}>
-              <Truck className="ic" aria-hidden="true" /> Delivery within Ilorin
+              <Truck className="ic" aria-hidden="true" /> Nationwide delivery
             </div>
             <div className={FACT}>
               <Ruler className="ic" aria-hidden="true" /> Custom sizes available

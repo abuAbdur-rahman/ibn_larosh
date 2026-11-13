@@ -1,9 +1,10 @@
-# IBN Larosh Enterprises — Cap Catalog Website
+# IBN Larosh Enterprises — Storefront
 
 **Values You Trust, Quality You Deserve** · BN No. 9882187 · Beside Tipper Garage, Okolowo Area, Ilorin, Kwara State
 
-Mobile-first catalog of quality Hausa caps — Tajia, Kaftan-matching, Fancy, and custom-woven.
-No cart, no payment: every **Order** button opens WhatsApp (`wa.me/2348109080076`) with cap details pre-filled.
+Mobile-first storefront for clothing and wearables, fragrances, Islamic books and essentials.
+The cap catalog supports size and style selection. Other items are listed for availability and price enquiries.
+Both flows open WhatsApp (`wa.me/2348109080076`) with the item details pre-filled.
 
 | | |
 |---|---|
@@ -32,12 +33,13 @@ Scripts: `dev` · `build` · `start` · `lint` · `typecheck` · `db:push` · `d
 
 | Route | Purpose |
 |---|---|
-| `/` | Hero slider, category tiles, featured caps, how-to-order, locations |
+| `/` | Storefront, collection cards, featured caps, ordering and Ilorin pickup |
+| `/shop` | Search and filter the three collections, then enquire about an item on WhatsApp |
 | `/caps` | Catalog: search + type/size/colour filters, 2→4 col grid, load more |
 | `/caps/[id]` | Cap detail, size chips, sticky *Order on WhatsApp* bar |
 | `/custom` | Custom-order form → prefilled WhatsApp message |
 | `/sizes` | Size guide chart (inches ↔ cm) |
-| `/delivery` | Ilorin delivery + pickup info |
+| `/delivery` | Nationwide delivery and Ilorin pickup |
 | `/faq` | Accordion FAQ |
 | `/about` `· /contact` | Story + logo · WhatsApp/call/map |
 | `/admin` | Owner portal (single admin from `.env`) — login, upload, edit/hide/delete caps |

@@ -5,14 +5,12 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 import { House, LayoutGrid, Menu, Scissors } from "lucide-react";
 import { WhatsAppIcon } from "./whatsapp-icon";
-import { wa } from "@/lib/whatsapp";
+import { enquiryLink } from "@/lib/whatsapp";
 
-const CHAT_LINK = wa("Assalamu alaikum, I'd like to order a cap.");
-
-type TabKey = "home" | "caps" | "custom" | "more";
+type TabKey = "home" | "shop" | "custom" | "more";
 
 function resolveTab(pathname: string): TabKey {
-  if (pathname.startsWith("/caps")) return "caps";
+  if (pathname === "/shop" || /^\/caps(?:\/|$)/.test(pathname)) return "shop";
   if (pathname.startsWith("/custom")) return "custom";
   if (pathname === "/") return "home";
   return "more";
@@ -58,11 +56,11 @@ export function TabBar() {
       <Tab href="/" label="Home" active={active === "home"}>
         <House className="ic" />
       </Tab>
-      <Tab href="/caps" label="Caps" active={active === "caps"}>
+      <Tab href="/shop" label="Shop" active={active === "shop"}>
         <LayoutGrid className="ic" />
       </Tab>
       <a
-        href={CHAT_LINK}
+        href={enquiryLink()}
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Chat on WhatsApp"

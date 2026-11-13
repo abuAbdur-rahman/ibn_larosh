@@ -4,9 +4,7 @@ import { Search } from "lucide-react";
 import { DesktopNav } from "./desktop-nav";
 import { WhatsAppIcon } from "./whatsapp-icon";
 import { SITE } from "@/lib/site";
-import { wa } from "@/lib/whatsapp";
-
-const HEADER_CHAT = wa("Assalamu alaikum, I'd like to order a cap.");
+import { enquiryLink } from "@/lib/whatsapp";
 
 const ICON_BTN =
   "grid size-11 place-items-center rounded-full bg-white/10 transition-transform active:scale-[0.94]";
@@ -40,12 +38,12 @@ export function SiteHeader() {
 
         <span className="flex-1" />
 
-        <Link className={ICON_BTN} href="/caps" aria-label="Search caps">
+        <Link className={ICON_BTN} href="/shop" aria-label="Search the shop">
           <Search className="ic" />
         </Link>
         <a
           className={`${ICON_BTN} bg-wa-solid hover:bg-wa-solid-hover`}
-          href={HEADER_CHAT}
+          href={enquiryLink()}
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat on WhatsApp"

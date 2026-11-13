@@ -14,10 +14,14 @@ export const orderLink = (cap: Cap, size?: number, color?: string) =>
       size ? `Size: ${size}` : null,
       color ? `Colour: ${color}` : null,
       `Ref: ${cap.id}`,
-      "Delivery: Ilorin",
     ]
       .filter(Boolean)
       .join("\n")
   );
+
+export const enquiryLink = (item?: string) =>
+  wa(item
+    ? `Assalamu alaikum, I'd like to ask about ${item}. Please confirm availability and price.`
+    : "Assalamu alaikum, I'd like to make an enquiry.");
 
 export const askLink = () => wa("Assalamu alaikum, I have a question.");

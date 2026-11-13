@@ -9,7 +9,7 @@ import { SITE } from "@/lib/site";
 export const metadata: Metadata = {
   title: "About us",
   description:
-    "IBN Larosh Enterprises sells quality and fancy Hausa caps, weaves any design you like and takes bulk orders. Ilorin, Kwara State. BN No. 9882187.",
+    "Shop modest wear, fragrances, Islamic books and essentials from IBN Larosh Enterprises in Ilorin, Kwara State.",
 };
 
 const VALUES = [
@@ -38,9 +38,9 @@ export default function AboutPage() {
       <Section>
         <Panel className="grid gap-4">
           <p className="max-w-[68ch]">
-            <b>{SITE.name}</b> sells all kinds of quality and fancy Hausa caps, including
-            Tajia and caps to match your kaftan. We weave any design of your choice and take
-            bulk orders.
+            <b>{SITE.name}</b> is a shop in Okolowo, Ilorin, offering clothing, fragrances,
+            Islamic books and essentials. We also weave Hausa caps to order and welcome bulk
+            orders for caps.
           </p>
           <p className="text-[13px] text-mut">BN No. {SITE.bnNo}</p>
         </Panel>

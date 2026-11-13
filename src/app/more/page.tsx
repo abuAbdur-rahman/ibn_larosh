@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const ITEMS = [
   { href: "/sizes", icon: Ruler, label: "Size guide" },
-  { href: "/delivery", icon: Truck, label: "Delivery (Ilorin)" },
+  { href: "/delivery", icon: Truck, label: "Delivery & pickup" },
   { href: "/faq", icon: CircleHelp, label: "FAQ" },
   { href: "/about", icon: Info, label: "About us" },
   { href: "/contact", icon: Phone, label: "Contact" },
