@@ -7,16 +7,16 @@ export interface Step {
 }
 
 export const ORDER_STEPS: readonly Step[] = [
-  { n: 1, title: "Pick a cap", body: "Browse designs and choose your size." },
+  { n: 1, title: "Find what you need", body: "Browse the collections or pick a cap and choose your size." },
   {
     n: 2,
-    title: "Tap Order",
-    body: "WhatsApp opens with your cap details filled in.",
+    title: "Chat on WhatsApp",
+    body: "Send your enquiry with the item you’re interested in.",
   },
   {
     n: 3,
     title: "Confirm and receive",
-    body: "We confirm price and arrange delivery within Ilorin.",
+    body: "We confirm the price and arrange nationwide delivery or Ilorin pickup.",
   },
 ];
 
@@ -24,13 +24,13 @@ export const DELIVERY_STEPS: readonly Step[] = [
   {
     n: 1,
     title: "Order on WhatsApp",
-    body: "Share the cap, size and your area in Ilorin.",
+    body: "Share the item and your town or area.",
   },
   { n: 2, title: "We confirm", body: "Price, availability and delivery details." },
   {
     n: 3,
-    title: "Receive your cap",
-    body: "Delivered to your location in Ilorin.",
+    title: "Receive your order",
+    body: "Get it delivered or pick it up in Okolowo, Ilorin.",
   },
 ];
 

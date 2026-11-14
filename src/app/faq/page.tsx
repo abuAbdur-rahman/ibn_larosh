@@ -8,17 +8,17 @@ import { askLink } from "@/lib/whatsapp";
 export const metadata: Metadata = {
   title: "FAQ",
   description:
-    "Answers about ordering Hausa caps, custom designs, bulk orders, sizes and delivery in Ilorin.",
+    "Answers about ordering, nationwide delivery, Ilorin pickup, cap sizes and custom designs.",
 };
 
 const QUESTIONS = [
   {
     q: "Where do you deliver?",
-    a: "We deliver within Ilorin only. You can also pick up at our shop beside Tipper Garage, Okolowo Area.",
+    a: "We deliver across Nigeria. Share your location on WhatsApp for the delivery fee and timing. You can also collect from our shop beside Tipper Garage, Okolowo, Ilorin.",
   },
   {
     q: "How do I order?",
-    a: "Tap Order on any cap. WhatsApp opens with the cap name, size and reference filled in. We confirm the rest with you.",
+    a: "Browse the shop and tap the WhatsApp icon next to an item. For caps, pick a design and size to include them in your message. We’ll confirm the price and availability.",
   },
   {
     q: "Can you make a custom design?",

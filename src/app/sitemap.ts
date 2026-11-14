@@ -4,6 +4,7 @@ import { getSiteUrl } from "@/lib/site-url";
 
 const STATIC_ROUTES = [
   "",
+  "/shop",
   "/caps",
   "/custom",
   "/sizes",

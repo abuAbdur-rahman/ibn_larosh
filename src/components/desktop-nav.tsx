@@ -6,11 +6,10 @@ import { cn } from "cn";
 
 const NAV = [
   { href: "/", label: "Home" },
+  { href: "/shop", label: "Shop" },
   { href: "/caps", label: "Caps" },
-  { href: "/custom", label: "Custom order" },
-  { href: "/sizes", label: "Size guide" },
+  { href: "/custom", label: "Custom caps" },
   { href: "/delivery", label: "Delivery" },
-  { href: "/faq", label: "FAQ" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
 ] as const;

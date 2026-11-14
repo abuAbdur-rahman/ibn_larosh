@@ -5,7 +5,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "IBN Larosh Enterprises",
     short_name: "IBN Larosh",
     description:
-      "Quality Hausa caps in Ilorin — Tajia, kaftan caps, fancy weaves and custom orders. Order on WhatsApp.",
+      "Modest clothing, fragrances, Islamic books and essentials in Ilorin. Order on WhatsApp.",
     start_url: "/",
     display: "standalone",
     background_color: "#FAF4E1",

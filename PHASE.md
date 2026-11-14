@@ -10,6 +10,7 @@ Commit format: `type(scope): short description`.
 | 2 | Data layer | Drizzle/Neon schema, DB-backed catalog, R2 internals, ISR caching strategy | ✅ done |
 | 3 | Admin portal | Env-based login, session cookie, upload + cap CRUD, cache invalidation | ✅ done |
 | 4 | Polish & deploy | SEO/OG, favicon set, image optimization flip, Vercel deploy | ✅ code complete · deploy needs owner |
+| 5 | Storefront collections | Mobile storefront, searchable collections, item enquiries and nationwide delivery | Implementation complete |
 
 References: business/UX `docs/plans/PLAN.md` · stack update `docs/plans/001-foundation.md` ·
 prototype `docs/reference/prototype.html` · visual spec `DESIGN.md`.
@@ -44,3 +45,4 @@ prototype `docs/reference/prototype.html` · visual spec `DESIGN.md`.
 | 2026-10-18 | — (styles) | `999ac9e` | CSS→Tailwind stage 5 complete: header/nav/tab bar/footer/FAB, home, admin chrome + forms; globals.css 1,151 → 284 lines, one component class left |
 | 2026-10-18 | 4 | `29fa9ea` | polish: generated icon set + 1200×630 OG card, OG/Twitter metadata, canonical URLs on all routes, explicit form labels; full route/asset/link sweep + browser interaction tests |
 | 2026-10-18 | 4 (final) | (this commit) | admin uploader rebuilt as a drag-drop dropzone with preview + remove; Zod schema for cap input (product-facing messages); schema + admin markup tests |
+| 2026-11-13 | 5 | (this commit) | expanded the storefront with three collections and item-specific WhatsApp enquiries, using the owner’s updated assortment and delivery flyer |

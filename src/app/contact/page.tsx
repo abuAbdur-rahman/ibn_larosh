@@ -44,7 +44,7 @@ export default function ContactPage() {
       </div>
 
       <Section>
-        <SectionHead title="Also available in" />
+        <SectionHead title="Caps also available in" />
         <div className="grid gap-3 min-[900px]:grid-cols-2">
           {SITE.otherLocations.map((location) => (
             <LocationCard

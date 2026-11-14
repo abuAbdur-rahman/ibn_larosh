@@ -282,3 +282,11 @@ body:has([data-admin]) :is(.tabbar, .fab, .site-footer) {
     transition: none !important;
   }
 }
+
+/* Staggered diamonds echo the woven border on the shop’s flyer. */
+.woven-trim {
+  background-color: #113722;
+  background-image:
+    repeating-linear-gradient(45deg, transparent 0 5px, var(--gold-l) 5px 7px, transparent 7px 12px),
+    repeating-linear-gradient(-45deg, transparent 0 5px, var(--gold) 5px 7px, transparent 7px 12px);
+}

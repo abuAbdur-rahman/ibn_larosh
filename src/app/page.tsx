@@ -1,31 +1,19 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
-import {
-  BadgeCheck,
-  Crown,
-  LayoutGrid,
-  MapPin,
-  Package,
-  Ruler,
-  Scissors,
-  Shirt,
-  Sparkles,
-  Store,
-  Truck,
-} from "lucide-react";
+import { ArrowRight, MapPin, Scissors, Store, Truck } from "lucide-react";
 import { CapCard } from "@/components/cap-card";
-import { ButtonAnchor, ButtonLink } from "@/components/ui-kit/button";
-import { CapGrid, HScroll } from "@/components/ui-kit/catalog";
-import { Banner, LocationCard, Page, Section } from "@/components/ui-kit/layout";
-import { HeroSlider } from "@/components/hero-slider";
 import { SectionHead } from "@/components/section-head";
 import { Steps } from "@/components/steps";
+import { ButtonAnchor, ButtonLink } from "@/components/ui-kit/button";
+import { CapGrid } from "@/components/ui-kit/catalog";
+import { Banner, LocationCard, Page, Section } from "@/components/ui-kit/layout";
 import { WhatsAppIcon } from "@/components/whatsapp-icon";
-import { CATEGORIES, SITE } from "@/lib/site";
 import { getCaps } from "@/lib/caps";
+import { COLLECTIONS, shopHref } from "@/lib/collections";
+import { SITE } from "@/lib/site";
 import { ORDER_STEPS } from "@/lib/steps";
-import { wa } from "@/lib/whatsapp";
-import type { CategoryKey } from "@/lib/types";
+import { enquiryLink } from "@/lib/whatsapp";
 
 export const revalidate = 300;
 
@@ -33,112 +21,106 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
 };
 
-const CATEGORY_ICONS: Record<CategoryKey, typeof Crown> = {
-  tajia: Crown,
-  kaftan: Shirt,
-  fancy: Sparkles,
-  custom: Scissors,
-};
-
-const PERKS = [
-  { icon: Truck, label: "Delivery in Ilorin" },
-  { icon: Ruler, label: "Custom sizes" },
-  { icon: Package, label: "Bulk orders" },
-  { icon: Scissors, label: "Any design woven" },
-  { icon: BadgeCheck, label: "Affordable" },
-] as const;
-
 export default async function HomePage() {
-  const caps = await getCaps();
-  // Hero advertises breadth; the featured grid owns the curated picks and
-  // skips the hero caps, so the first screenful never repeats an image.
-  const slides = caps.filter((cap) => !cap.featured).slice(0, 3);
-  const slideIds = new Set(slides.map((cap) => cap.id));
+  const availableCaps = (await getCaps()).filter((cap) => cap.available);
   const featured = [
-    ...caps.filter((cap) => cap.featured),
-    ...caps.filter((cap) => !cap.featured && !slideIds.has(cap.id)),
-  ].slice(0, 6);
+    ...availableCaps.filter((cap) => cap.featured),
+    ...availableCaps.filter((cap) => !cap.featured),
+  ].slice(0, 4);
 
   return (
     <>
-      <section className="rounded-b-[28px] bg-g9 bg-[image:var(--hero-glow)] px-4 pt-8 pb-10 text-white min-[900px]:px-6 min-[900px]:pt-19 min-[900px]:pb-20">
-        <div className="mx-auto grid max-w-[1100px] gap-7 min-[900px]:grid-cols-[1.05fr_0.95fr] min-[900px]:items-center min-[900px]:gap-14">
+      <section className="relative overflow-hidden rounded-b-[28px] bg-g9 bg-[image:var(--hero-glow)] px-3.5 pt-8 pb-7 text-white sm:px-6 min-[900px]:py-12">
+        <div className="mx-auto grid max-w-[1072px] items-center gap-6 min-[900px]:grid-cols-[1.08fr_0.92fr] min-[900px]:gap-12">
           <div>
-            <span className="inline-flex items-center gap-1.5 text-[11px] font-bold tracking-[0.2em] text-gold-l uppercase [&_.ic]:size-3.5">
-              <MapPin className="ic" aria-hidden="true" /> {SITE.city} · {SITE.region}
-            </span>
-            <h1 className="my-2 mb-2.5 text-[clamp(34px,9vw,56px)]">
-              Quality <em className="not-italic text-gold-l">Caps</em>,<br />
-              woven to fit.
-            </h1>
-            <p className="max-w-[42ch] text-white/78">
-              Quality and fancy Hausa caps in every size, colour and design. Pick a cap that
-              suits your style and your kaftan.
+            <p className="flex items-center gap-1.5 text-xs font-semibold tracking-[0.14em] text-gold-l uppercase">
+              <MapPin className="size-4 shrink-0" aria-hidden="true" /> {SITE.city}, {SITE.region}
             </p>
-            <div className="mt-4.5 flex flex-wrap gap-2.5">
-              <ButtonLink variant="gold" href="/caps">
-                <LayoutGrid className="ic" aria-hidden="true" /> Browse caps
+            <h1 className="mt-3 max-w-[16ch] text-[clamp(35px,7vw,61px)]">
+              Modest style. <span className="text-gold-l">Everyday essentials.</span>
+            </h1>
+            <p className="mt-3 max-w-[48ch] text-white/85">
+              From woven Tajia caps and Agbada to attars, Islamic books and prayer essentials.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-2.5">
+              <ButtonLink variant="gold" href="/shop">
+                Shop collections <ArrowRight className="size-4 shrink-0" aria-hidden="true" />
               </ButtonLink>
               <ButtonAnchor
                 variant="wa"
-                href={wa("Assalamu alaikum, I'd like to order a cap.")}
+                href={enquiryLink()}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <WhatsAppIcon className="ic wa" /> Order
+                <WhatsAppIcon className="ic wa" /> Chat on WhatsApp
               </ButtonAnchor>
             </div>
           </div>
-          <HeroSlider slides={slides} />
+          <div className="relative overflow-hidden rounded-[22px] border border-gold-l/35 bg-[#433223] shadow-[0_16px_36px_rgba(0,0,0,.22)]">
+            <div className="relative aspect-[2/1] min-[900px]:aspect-[4/3]">
+              <Image
+                src="/collections/storefront.webp"
+                alt="Kaftans, woven caps and Islamic books from the IBN Larosh flyer"
+                fill
+                preload
+                sizes="(max-width: 899px) 95vw, 500px"
+                className="object-cover object-[center_48%]"
+              />
+            </div>
+            <div className="woven-trim h-1.5" aria-hidden="true" />
+          </div>
         </div>
       </section>
 
-      <div className="mx-auto flex max-w-[1100px] gap-2.5 overflow-x-auto px-3.5 pt-5.5 pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-        {PERKS.map((perk) => (
-          <span
-            className="flex flex-none items-center gap-2 rounded-full border border-line bg-paper px-3.5 py-2.25 text-[13px] font-semibold text-g9 [&_.ic]:size-[17px] [&_.ic]:text-gold"
-            key={perk.label}
-          >
-            <perk.icon className="ic" aria-hidden="true" /> {perk.label}
-          </span>
-        ))}
-      </div>
-
       <Page>
-        <Section>
-          <SectionHead title="Shop by type" />
-          <HScroll label="Shop by type">
-            {(Object.entries(CATEGORIES) as [CategoryKey, (typeof CATEGORIES)[CategoryKey]][]).map(
-              ([key, category]) => {
-                const Icon = CATEGORY_ICONS[key];
-                return (
-                  <Link
-                    className="flex w-[132px] flex-col gap-3 rounded-[18px] border border-line bg-paper p-4.5 text-left"
-                    href={key === "custom" ? "/custom" : `/caps?cat=${key}`}
-                    key={key}
-                  >
-                    <span className="grid size-10 place-items-center rounded-xl bg-g9 text-gold-l">
-                      <Icon className="ic" aria-hidden="true" />
-                    </span>
-                    <b className="font-heading text-[15px] font-semibold text-g9">
-                      {category.label}
-                    </b>
-                    <small className="-mt-2 text-xs text-mut">{category.desc}</small>
-                  </Link>
-                );
-              }
-            )}
-          </HScroll>
+        <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1 border-b border-line pb-3 text-[13px] font-semibold text-g9 sm:mt-5">
+          <Link href="/delivery" className="inline-flex min-h-11 items-center gap-2 hover:underline">
+            <Truck className="size-4 shrink-0" aria-hidden="true" /> Nationwide delivery
+          </Link>
+          <Link href="/contact" className="inline-flex min-h-11 items-center gap-2 hover:underline">
+            <Store className="size-4 shrink-0" aria-hidden="true" /> Pickup in Okolowo, Ilorin
+          </Link>
+        </div>
+
+        <Section aria-labelledby="shop-by-collection">
+          <h2 id="shop-by-collection" className="mb-4 text-[clamp(25px,4vw,34px)] text-g9">Shop by collection</h2>
+          <div className="grid gap-3.5 sm:grid-cols-3">
+            {COLLECTIONS.map((collection) => (
+              <Link
+                key={collection.id}
+                href={shopHref(collection.id)}
+                className="group grid min-h-[125px] grid-cols-[minmax(0,1fr)_7rem] overflow-hidden rounded-[19px] border border-line bg-paper shadow-[0_5px_16px_rgba(10,59,34,.06)] transition-shadow hover:shadow-[0_8px_22px_rgba(10,59,34,.14)] sm:flex sm:flex-col"
+              >
+                <div className="flex flex-col justify-center gap-1.5 p-3.5 sm:order-2 sm:flex-1 sm:p-4">
+                  <h3 className="text-lg text-g9 sm:text-xl">{collection.name}</h3>
+                  <p className="text-xs leading-relaxed text-mut sm:text-sm">{collection.description}</p>
+                  <span className="mt-1 inline-flex items-center gap-1.5 text-xs font-semibold text-g7 sm:mt-auto sm:pt-2">
+                    Browse <ArrowRight className="size-4 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden="true" />
+                  </span>
+                </div>
+                <div className="relative min-h-full overflow-hidden bg-line sm:aspect-[2/1] sm:min-h-0">
+                  <Image
+                    src={collection.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 639px) 112px, (max-width: 1100px) 33vw, 350px"
+                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                    style={{ objectPosition: collection.imagePosition }}
+                  />
+                </div>
+              </Link>
+            ))}
+          </div>
         </Section>
 
-        <Section>
-          <SectionHead title="Featured caps" href="/caps" linkLabel="See all" />
-          <CapGrid>
-            {featured.map((cap, index) => (
-              <CapCard cap={cap} key={cap.id} priority={index < 4} />
-            ))}
-          </CapGrid>
-        </Section>
+        {featured.length > 0 && (
+          <Section>
+            <SectionHead title="Featured Hausa caps" href="/caps" linkLabel="Browse caps" />
+            <CapGrid>
+              {featured.map((cap) => <CapCard cap={cap} key={cap.id} />)}
+            </CapGrid>
+          </Section>
+        )}
 
         <Section>
           <SectionHead title="How to order" />
@@ -147,34 +129,20 @@ export default async function HomePage() {
 
         <Section>
           <Banner
-            title="Weaving of any cap design of your choice"
+            title="Have a cap design in mind?"
             action={
               <ButtonLink variant="gold" href="/custom">
-                <Scissors className="ic" aria-hidden="true" /> Start a custom order
+                <Scissors className="ic" aria-hidden="true" /> Request a custom cap
               </ButtonLink>
             }
           >
-            Tell us the colours, pattern and size. We weave it for you. Bulk orders welcome.
+            Send us your preferred pattern, colours and size. Bulk orders are welcome.
           </Banner>
         </Section>
 
         <Section>
-          <SectionHead title="Find us" />
-          <div className="grid gap-3 min-[900px]:grid-cols-2">
-            <LocationCard
-              icon={<Store className="ic" aria-hidden="true" />}
-              title={`${SITE.city} (shop)`}
-              detail={SITE.address}
-            />
-            {SITE.otherLocations.map((location) => (
-              <LocationCard
-                key={location}
-                icon={<MapPin className="ic" aria-hidden="true" />}
-                title={location}
-                detail="Available"
-              />
-            ))}
-          </div>
+          <SectionHead title="Visit our Ilorin shop" href="/contact" linkLabel="Get directions" />
+          <LocationCard icon={<Store className="ic" aria-hidden="true" />} title={SITE.name} detail={SITE.address} />
         </Section>
       </Page>
     </>

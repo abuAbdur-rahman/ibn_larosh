@@ -10,9 +10,9 @@ export default function NotFound() {
       <div className="grid justify-items-center gap-4 px-2.5 py-[70px] text-center text-mut">
         <SearchX className="ic" aria-hidden="true" />
         <h1 className="text-[28px] text-g9">Page not found</h1>
-        <p>That page doesn&apos;t exist — but the caps do.</p>
-        <ButtonLink variant="green" href="/">
-          Back home
+        <p>Check the address or return to the shop.</p>
+        <ButtonLink variant="green" href="/shop">
+          Browse the shop
         </ButtonLink>
         <ButtonAnchor variant="wa" href={askLink()} target="_blank" rel="noopener noreferrer">
           <WhatsAppIcon className="ic wa" /> Ask on WhatsApp
