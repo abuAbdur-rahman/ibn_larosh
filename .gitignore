@@ -35,7 +35,6 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (example committed, real secrets never)
-.env*
 !.env.example
 
 # vercel
@@ -44,3 +43,4 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+config.bat
